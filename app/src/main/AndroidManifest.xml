@@ -4,13 +4,13 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_kola"
+        android:icon="@mipmap/ic_movie"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_kola_round"
+        android:roundIcon="@mipmap/ic_movie_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Fruits">
         <activity
-            android:name=".MainActivity"
+            android:name=".presentation.MainActivity"
             android:exported="true"
             android:label="@string/app_name"
             android:theme="@style/splashScreenTheme">

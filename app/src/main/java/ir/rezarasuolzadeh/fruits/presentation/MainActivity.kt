@@ -1,10 +1,11 @@
-package ir.rezarasuolzadeh.fruits
+package ir.rezarasuolzadeh.fruits.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
+import ir.rezarasuolzadeh.fruits.R
 import ir.rezarasuolzadeh.fruits.ui.nav.Navigation
 import ir.rezarasuolzadeh.fruits.ui.theme.FruitsTheme
 

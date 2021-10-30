@@ -4,10 +4,10 @@
     <item android:drawable="@color/white" />
 
     <item
-        android:drawable="@drawable/kola"
-        android:top="390dp"
-        android:bottom="390dp"
-        android:right="90dp"
-        android:left="90dp" />
+        android:drawable="@drawable/movie"
+        android:top="350dp"
+        android:bottom="350dp"
+        android:right="120dp"
+        android:left="120dp" />
 
 </layer-list>

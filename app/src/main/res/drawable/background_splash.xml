@@ -4,7 +4,7 @@
     <item android:drawable="@color/white" />
 
     <item
-        android:drawable="@drawable/movie"
+        android:drawable="@drawable/news"
         android:top="350dp"
         android:bottom="350dp"
         android:right="120dp"

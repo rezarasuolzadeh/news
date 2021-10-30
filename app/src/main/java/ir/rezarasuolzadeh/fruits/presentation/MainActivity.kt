@@ -6,10 +6,11 @@ import androidx.activity.compose.setContent
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import ir.rezarasuolzadeh.fruits.R
-import ir.rezarasuolzadeh.fruits.ui.nav.Navigation
-import ir.rezarasuolzadeh.fruits.ui.theme.FruitsTheme
+import ir.rezarasuolzadeh.fruits.presentation.ui.nav.Navigation
+import ir.rezarasuolzadeh.fruits.presentation.ui.theme.FruitsTheme
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setTheme(R.style.Theme_Fruits)
@@ -21,4 +22,5 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
+
 }

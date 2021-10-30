@@ -69,7 +69,10 @@ dependencies {
 
     def retrofit = "2.9.0"
     implementation "com.squareup.retrofit2:retrofit:$retrofit"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofit"
+
+    def moshi = "1.12.0"
+    implementation "com.squareup.moshi:moshi-kotlin:$moshi"
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi"
 
     def hilt = "2.37"
     implementation "com.google.dagger:hilt-android:$hilt"

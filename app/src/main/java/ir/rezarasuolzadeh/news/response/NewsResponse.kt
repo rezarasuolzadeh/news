@@ -1,20 +1,22 @@
 package ir.rezarasuolzadeh.news.response
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
+import com.squareup.moshi.JsonClass
 
+@JsonClass(generateAdapter = true)
 data class NewsResponse(
-    @SerializedName("name")
+    @Json(name = "name")
     val title: String?,
-    @SerializedName("url")
+    @Json(name = "url")
     val description: String?,
-    @SerializedName("url")
+    @Json(name = "url")
     val content: String?,
-    @SerializedName("url")
+    @Json(name = "url")
     val url: String?,
-    @SerializedName("url")
+    @Json(name = "url")
     val image: String?,
-    @SerializedName("url")
+    @Json(name = "url")
     val publishedAt: String?,
-    @SerializedName("url")
+    @Json(name = "url")
     val source: SourceResponse?
 )

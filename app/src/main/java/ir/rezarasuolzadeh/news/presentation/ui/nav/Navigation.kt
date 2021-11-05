@@ -9,13 +9,19 @@ import androidx.navigation.compose.rememberNavController
 import ir.rezarasuolzadeh.news.presentation.ui.screens.HomeScreen
 import ir.rezarasuolzadeh.news.presentation.ui.screens.LoginScreen
 import ir.rezarasuolzadeh.news.presentation.ui.screens.Screen
+import ir.rezarasuolzadeh.news.viewmodel.NewsViewModel
 
 @Composable
-fun Navigation() {
+fun Navigation(
+    newsViewModel: NewsViewModel
+) {
     val navController = rememberNavController()
     NavHost(navController = navController, startDestination = Screen.LoginScreen.route) {
         composable(route = Screen.LoginScreen.route) {
-            LoginScreen(navController = navController)
+            LoginScreen(
+                navController = navController,
+                newsViewModel = newsViewModel
+            )
         }
         composable(
             route = Screen.HomeScreen.route + "/{name}",

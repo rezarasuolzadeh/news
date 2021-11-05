@@ -2,11 +2,14 @@ package ir.rezarasuolzadeh.news.mapper
 
 import ir.rezarasuolzadeh.news.mapper.interfaces.Mapper
 import ir.rezarasuolzadeh.news.model.NewsModel
+import ir.rezarasuolzadeh.news.model.SourceModel
 import ir.rezarasuolzadeh.news.response.NewsResponse
+import ir.rezarasuolzadeh.news.response.SourceResponse
+import javax.inject.Inject
 
-class NewsMapper : Mapper<NewsResponse, NewsModel> {
-
-    private val sourceMapper = SourceMapper()
+class NewsMapper @Inject constructor(
+    private val sourceMapper: Mapper<SourceResponse, SourceModel>
+) : Mapper<NewsResponse, NewsModel> {
 
     override fun mapResponseToModel(response: NewsResponse): NewsModel {
         return NewsModel(

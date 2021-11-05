@@ -69,12 +69,13 @@ dependencies {
 
     def retrofit = "2.9.0"
     implementation "com.squareup.retrofit2:retrofit:$retrofit"
+    implementation "com.squareup.retrofit2:converter-moshi:2.4.0"
 
     def moshi = "1.12.0"
     implementation "com.squareup.moshi:moshi-kotlin:$moshi"
     kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshi"
 
-    def hilt = "2.37"
+    def hilt = "2.38.1"
     implementation "com.google.dagger:hilt-android:$hilt"
     kapt "com.google.dagger:hilt-android-compiler:$hilt"
 
@@ -82,4 +83,15 @@ dependencies {
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_lifecycle_view_model"
     kapt "androidx.hilt:hilt-compiler:$hilt_lifecycle_view_model"
 
+    def coroutines = "1.5.1"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
+
+    def chucker = "3.5.2"
+    debugImplementation "com.github.chuckerteam.chucker:library:$chucker"
+
+}
+
+kapt {
+    correctErrorTypes = true
 }

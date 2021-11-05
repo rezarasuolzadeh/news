@@ -13,9 +13,15 @@ import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import ir.rezarasuolzadeh.news.viewmodel.NewsViewModel
 
 @Composable
-fun LoginScreen(navController: NavController) {
+fun LoginScreen(
+    navController: NavController,
+    newsViewModel: NewsViewModel
+) {
+    newsViewModel.fetchHeadlineNews()
+
     Column(
         modifier = Modifier
             .fillMaxWidth()

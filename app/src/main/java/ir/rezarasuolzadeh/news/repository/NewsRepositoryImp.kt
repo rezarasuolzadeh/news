@@ -1,11 +1,14 @@
 package ir.rezarasuolzadeh.news.repository
 
+import dagger.hilt.android.scopes.ActivityRetainedScoped
 import ir.rezarasuolzadeh.news.api.NewsAPI
 import ir.rezarasuolzadeh.news.model.NewsModel
 import ir.rezarasuolzadeh.news.mapper.NewsMapper
 import ir.rezarasuolzadeh.news.repository.interfaces.NewsRepository
+import javax.inject.Inject
 
-class NewsRepositoryImp(
+@ActivityRetainedScoped
+class NewsRepositoryImp @Inject constructor(
     private val newsAPI: NewsAPI,
     private val mapper: NewsMapper
 ) : NewsRepository {

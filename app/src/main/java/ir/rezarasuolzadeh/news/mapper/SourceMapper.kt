@@ -3,8 +3,9 @@ package ir.rezarasuolzadeh.news.mapper
 import ir.rezarasuolzadeh.news.mapper.interfaces.Mapper
 import ir.rezarasuolzadeh.news.model.SourceModel
 import ir.rezarasuolzadeh.news.response.SourceResponse
+import javax.inject.Inject
 
-class SourceMapper : Mapper<SourceResponse, SourceModel> {
+class SourceMapper @Inject constructor() : Mapper<SourceResponse, SourceModel> {
 
     override fun mapResponseToModel(response: SourceResponse): SourceModel {
         return SourceModel(

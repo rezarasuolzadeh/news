@@ -1,7 +1,7 @@
 package ir.rezarasuolzadeh.news.di.modules
 
 import android.content.Context
-import com.chuckerteam.chucker.api.ChuckerInterceptor
+import com.readystatesoftware.chuck.ChuckInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -28,7 +28,7 @@ object NetworkModule {
             .Builder()
             .readTimeout(15, TimeUnit.SECONDS)
             .connectTimeout(15, TimeUnit.SECONDS)
-            .addInterceptor(ChuckerInterceptor(context))
+            .addInterceptor(ChuckInterceptor(context))
             .build()
     }
 

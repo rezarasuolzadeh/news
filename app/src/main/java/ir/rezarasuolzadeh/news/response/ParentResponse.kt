@@ -6,7 +6,7 @@ import com.squareup.moshi.JsonClass
 @JsonClass(generateAdapter = true)
 data class ParentResponse(
     @Json(name = "articles")
-    val articles: Int,
+    val articles: List<NewsResponse>,
     @Json(name = "totalArticles")
-    val totalArticles: List<NewsResponse>
+    val totalArticles: Int
 )

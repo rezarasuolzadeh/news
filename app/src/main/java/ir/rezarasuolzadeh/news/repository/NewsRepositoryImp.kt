@@ -14,7 +14,7 @@ class NewsRepositoryImp @Inject constructor(
 ) : NewsRepository {
 
     override suspend fun getHeadlineNews(q: String): List<NewsModel> {
-        return newsAPI.getHeadlineNews(q = q).totalArticles.map {
+        return newsAPI.getHeadlineNews(q = q).articles.map {
             mapper.mapResponseToModel(
                 it
             )
@@ -22,7 +22,7 @@ class NewsRepositoryImp @Inject constructor(
     }
 
     override suspend fun getOtherNews(language: String): List<NewsModel> {
-        return newsAPI.getOtherNews(language = language).totalArticles.map {
+        return newsAPI.getOtherNews(language = language).articles.map {
             mapper.mapResponseToModel(
                 it
             )

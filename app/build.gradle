@@ -87,8 +87,9 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines"
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines"
 
-    def chucker = "3.5.2"
-    debugImplementation "com.github.chuckerteam.chucker:library:$chucker"
+    def chucker = "1.1.0"
+//    debugImplementation "com.github.chuckerteam.chucker:library:$chucker"
+    debugImplementation "com.readystatesoftware.chuck:library:$chucker"
 
 }
 

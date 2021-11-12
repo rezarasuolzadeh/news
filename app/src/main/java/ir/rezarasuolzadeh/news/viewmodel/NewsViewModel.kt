@@ -1,6 +1,9 @@
 package ir.rezarasuolzadeh.news.viewmodel
 
-import androidx.lifecycle.*
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import ir.rezarasuolzadeh.news.model.NewsModel
 import ir.rezarasuolzadeh.news.repository.NewsRepositoryImp
@@ -16,8 +19,16 @@ class NewsViewModel @Inject constructor(
     val headlineNewsLiveData: LiveData<List<NewsModel>>
         get() = headlineNews
 
+    private val technologyNews = MutableLiveData<List<NewsModel>>()
+    val technologyNewsLiveData: LiveData<List<NewsModel>>
+        get() = technologyNews
+
     fun fetchHeadlineNews() = viewModelScope.launch {
-        headlineNews.postValue(repository.getHeadlineNews("iran"))
+        headlineNews.postValue(repository.getHeadlineNews())
+    }
+
+    fun fetchTechnologyNews() = viewModelScope.launch {
+        technologyNews.postValue(repository.getOtherNews(q = "space"))
     }
 
 }

@@ -4,8 +4,8 @@ import ir.rezarasuolzadeh.news.model.NewsModel
 
 interface NewsRepository {
 
-    suspend fun getHeadlineNews(q: String): List<NewsModel>
+    suspend fun getHeadlineNews(): List<NewsModel>
 
-    suspend fun getOtherNews(language: String): List<NewsModel>
+    suspend fun getOtherNews(q: String): List<NewsModel>
 
 }

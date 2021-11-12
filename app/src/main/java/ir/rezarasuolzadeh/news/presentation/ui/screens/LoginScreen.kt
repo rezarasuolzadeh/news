@@ -35,9 +35,10 @@ fun LoginScreen(
     newsViewModel: NewsViewModel
 ) {
     newsViewModel.fetchHeadlineNews()
+    newsViewModel.fetchTechnologyNews()
 
-    val newsList by newsViewModel.headlineNewsLiveData.observeAsState(emptyList())
-    val otherNewsList by newsViewModel.headlineNewsLiveData.observeAsState(emptyList())
+    val headlineNews by newsViewModel.headlineNewsLiveData.observeAsState(emptyList())
+    val technologyNews by newsViewModel.technologyNewsLiveData.observeAsState(emptyList())
 
     Column(
         modifier = Modifier
@@ -55,21 +56,21 @@ fun LoginScreen(
             contentPadding = PaddingValues(bottom = 65.dp)
         ) {
 
-            if (newsList.isNotEmpty()) {
+            if (headlineNews.isNotEmpty()) {
                 item {
-                    Pager(newsList)
+                    Pager(headlineNews)
                 }
             }
 
-            if (otherNewsList.isNotEmpty()) {
+            if (technologyNews.isNotEmpty()) {
 
                 item {
                     ItemHeaderTitle("Technology News")
                 }
-                for (i in otherNewsList.indices) {
+                for (i in technologyNews.indices) {
                     item {
                         ItemNews(
-                            news = otherNewsList[i]
+                            news = technologyNews[i]
                         )
                     }
                 }

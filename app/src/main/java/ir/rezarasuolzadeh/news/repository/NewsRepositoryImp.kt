@@ -13,16 +13,16 @@ class NewsRepositoryImp @Inject constructor(
     private val mapper: NewsMapper
 ) : NewsRepository {
 
-    override suspend fun getHeadlineNews(q: String): List<NewsModel> {
-        return newsAPI.getHeadlineNews(q = q).articles.map {
+    override suspend fun getHeadlineNews(): List<NewsModel> {
+        return newsAPI.getHeadlineNews().articles.map {
             mapper.mapResponseToModel(
                 it
             )
         }
     }
 
-    override suspend fun getOtherNews(language: String): List<NewsModel> {
-        return newsAPI.getOtherNews(language = language).articles.map {
+    override suspend fun getOtherNews(q: String): List<NewsModel> {
+        return newsAPI.getOtherNews(q = q).articles.map {
             mapper.mapResponseToModel(
                 it
             )

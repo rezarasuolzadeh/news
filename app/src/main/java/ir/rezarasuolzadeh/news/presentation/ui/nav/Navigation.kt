@@ -1,16 +1,20 @@
 package ir.rezarasuolzadeh.news.presentation.ui.nav
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
+import com.google.accompanist.pager.ExperimentalPagerApi
 import ir.rezarasuolzadeh.news.presentation.ui.screens.HomeScreen
 import ir.rezarasuolzadeh.news.presentation.ui.screens.LoginScreen
 import ir.rezarasuolzadeh.news.presentation.ui.screens.Screen
 import ir.rezarasuolzadeh.news.viewmodel.NewsViewModel
 
+@ExperimentalComposeUiApi
+@ExperimentalPagerApi
 @Composable
 fun Navigation(
     newsViewModel: NewsViewModel

@@ -18,7 +18,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import ir.rezarasuolzadeh.news.presentation.ui.component.ItemHeaderTitle
 import ir.rezarasuolzadeh.news.presentation.ui.component.ItemNews
 import ir.rezarasuolzadeh.news.presentation.ui.component.Pager
-import ir.rezarasuolzadeh.news.presentation.ui.component.Toolbar
+import ir.rezarasuolzadeh.news.presentation.ui.component.ToolbarHome
 import ir.rezarasuolzadeh.news.presentation.ui.theme.LightGrey
 import ir.rezarasuolzadeh.news.viewmodel.NewsViewModel
 
@@ -42,7 +42,7 @@ fun HomeScreen(
             .fillMaxWidth()
             .background(LightGrey),
     ) {
-        Toolbar(navController)
+        ToolbarHome(navController)
 
         LazyColumn(
             modifier = Modifier

@@ -23,7 +23,7 @@ import ir.rezarasuolzadeh.news.presentation.ui.theme.MediumGrey
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi
 @Composable
-fun Toolbar(
+fun ToolbarHome(
     navController: NavController
 ) {
     Column {

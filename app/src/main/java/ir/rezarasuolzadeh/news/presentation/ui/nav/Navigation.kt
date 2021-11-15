@@ -7,12 +7,15 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
+import coil.annotation.ExperimentalCoilApi
 import com.google.accompanist.pager.ExperimentalPagerApi
+import ir.rezarasuolzadeh.news.model.SourceModel
 import ir.rezarasuolzadeh.news.presentation.ui.screens.HomeScreen
 import ir.rezarasuolzadeh.news.presentation.ui.screens.LoginScreen
 import ir.rezarasuolzadeh.news.presentation.ui.screens.Screen
 import ir.rezarasuolzadeh.news.viewmodel.NewsViewModel
 
+@ExperimentalCoilApi
 @ExperimentalComposeUiApi
 @ExperimentalPagerApi
 @Composable
@@ -37,7 +40,10 @@ fun Navigation(
                 }
             )
         ) { entry ->
-            HomeScreen(name = entry.arguments?.getString("name"))
+            HomeScreen(
+                navController = navController,
+                name = entry.arguments?.getString("name")
+            )
         }
     }
 }

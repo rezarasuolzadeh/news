@@ -21,9 +21,11 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.navigation.NavController
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
 import ir.rezarasuolzadeh.news.model.NewsModel
+import ir.rezarasuolzadeh.news.presentation.ui.screens.Screen
 import ir.rezarasuolzadeh.news.presentation.ui.theme.Grey
 import ir.rezarasuolzadeh.news.presentation.ui.theme.LightGrey
 import ir.rezarasuolzadeh.news.presentation.ui.theme.MediumGrey
@@ -33,7 +35,8 @@ import ir.rezarasuolzadeh.news.presentation.ui.theme.RippleGrey
 @ExperimentalComposeUiApi
 @Composable
 fun ItemNews(
-    news: NewsModel
+    news: NewsModel,
+    navController: NavController
 ) {
     ConstraintLayout(
         modifier = Modifier
@@ -55,7 +58,9 @@ fun ItemNews(
                 .clickable(
                     interactionSource = remember { MutableInteractionSource() },
                     indication = rememberRipple(color = RippleGrey),
-                    onClick = { /* nothing to do yet */ }
+                    onClick = {
+                        navController.navigate(Screen.DetailScreen.withArgs("ali"))
+                    }
                 )
         ) {
             Text(

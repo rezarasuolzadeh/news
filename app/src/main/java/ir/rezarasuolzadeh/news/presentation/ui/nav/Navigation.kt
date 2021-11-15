@@ -9,9 +9,9 @@ import androidx.navigation.compose.navArgument
 import androidx.navigation.compose.rememberNavController
 import coil.annotation.ExperimentalCoilApi
 import com.google.accompanist.pager.ExperimentalPagerApi
-import ir.rezarasuolzadeh.news.model.SourceModel
+import ir.rezarasuolzadeh.news.presentation.ui.screens.DetailScreen
+import ir.rezarasuolzadeh.news.presentation.ui.screens.SavedScreen
 import ir.rezarasuolzadeh.news.presentation.ui.screens.HomeScreen
-import ir.rezarasuolzadeh.news.presentation.ui.screens.LoginScreen
 import ir.rezarasuolzadeh.news.presentation.ui.screens.Screen
 import ir.rezarasuolzadeh.news.viewmodel.NewsViewModel
 
@@ -23,15 +23,19 @@ fun Navigation(
     newsViewModel: NewsViewModel
 ) {
     val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = Screen.LoginScreen.route) {
-        composable(route = Screen.LoginScreen.route) {
-            LoginScreen(
+    NavHost(navController = navController, startDestination = Screen.HomeScreen.route) {
+
+        // home screen
+        composable(route = Screen.HomeScreen.route) {
+            HomeScreen(
                 navController = navController,
                 newsViewModel = newsViewModel
             )
         }
+
+        // saved screen
         composable(
-            route = Screen.HomeScreen.route + "/{name}",
+            route = Screen.SavedScreen.route + "/{name}",
             arguments = listOf(
                 navArgument("name") {
                     type = NavType.StringType
@@ -40,7 +44,24 @@ fun Navigation(
                 }
             )
         ) { entry ->
-            HomeScreen(
+            SavedScreen(
+                navController = navController,
+                name = entry.arguments?.getString("name")
+            )
+        }
+
+        // detail screen
+        composable(
+            route = Screen.DetailScreen.route + "/{name}",
+            arguments = listOf(
+                navArgument("name") {
+                    type = NavType.StringType
+                    defaultValue = "Reza"
+                    nullable = true
+                }
+            )
+        ) { entry ->
+            DetailScreen(
                 navController = navController,
                 name = entry.arguments?.getString("name")
             )

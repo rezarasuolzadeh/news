@@ -8,7 +8,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import ir.rezarasuolzadeh.news.api.NewsAPI
-import ir.rezarasuolzadeh.news.utils.Constants.BASE_URL
+import ir.rezarasuolzadeh.news.utils.constants.Constants.BASE_URL
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory

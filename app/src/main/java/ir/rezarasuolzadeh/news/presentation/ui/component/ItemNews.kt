@@ -1,5 +1,6 @@
 package ir.rezarasuolzadeh.news.presentation.ui.component
 
+import android.os.Bundle
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -30,6 +31,7 @@ import ir.rezarasuolzadeh.news.presentation.ui.theme.Grey
 import ir.rezarasuolzadeh.news.presentation.ui.theme.LightGrey
 import ir.rezarasuolzadeh.news.presentation.ui.theme.MediumGrey
 import ir.rezarasuolzadeh.news.presentation.ui.theme.RippleGrey
+import ir.rezarasuolzadeh.news.utils.extentions.putParcelableBundle
 
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi
@@ -59,6 +61,7 @@ fun ItemNews(
                     interactionSource = remember { MutableInteractionSource() },
                     indication = rememberRipple(color = RippleGrey),
                     onClick = {
+                        navController.putParcelableBundle(key = "news", value = news)
                         navController.navigate(Screen.DetailScreen.withArgs("ali"))
                     }
                 )

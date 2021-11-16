@@ -1,5 +1,9 @@
 package ir.rezarasuolzadeh.news.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class NewsModel(
     val title: String,
     val description: String,
@@ -7,5 +11,5 @@ data class NewsModel(
     val url: String,
     val image: String,
     val publishedAt: String,
-    val sourceModel: SourceModel?,
-)
+    val sourceModel: SourceModel?
+) : Parcelable

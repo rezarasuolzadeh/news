@@ -20,6 +20,7 @@ class MainActivity : ComponentActivity() {
 
     private val newsViewModel by viewModels<NewsViewModel>()
 
+    @ExperimentalAnimationApi
     @ExperimentalComposeUiApi
     @ExperimentalPagerApi
     override fun onCreate(savedInstanceState: Bundle?) {

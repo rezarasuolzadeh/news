@@ -1,20 +1,25 @@
 package ir.rezarasuolzadeh.news.presentation.ui.nav
 
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.navigation.NavType
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.navArgument
-import androidx.navigation.compose.rememberNavController
 import coil.annotation.ExperimentalCoilApi
+import com.google.accompanist.navigation.animation.AnimatedNavHost
+import com.google.accompanist.navigation.animation.composable
+import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import ir.rezarasuolzadeh.news.presentation.ui.screens.DetailScreen
-import ir.rezarasuolzadeh.news.presentation.ui.screens.SavedScreen
 import ir.rezarasuolzadeh.news.presentation.ui.screens.HomeScreen
+import ir.rezarasuolzadeh.news.presentation.ui.screens.SavedScreen
 import ir.rezarasuolzadeh.news.presentation.ui.screens.Screen
 import ir.rezarasuolzadeh.news.viewmodel.NewsViewModel
 
+@ExperimentalAnimationApi
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi
 @ExperimentalPagerApi
@@ -22,8 +27,8 @@ import ir.rezarasuolzadeh.news.viewmodel.NewsViewModel
 fun Navigation(
     newsViewModel: NewsViewModel
 ) {
-    val navController = rememberNavController()
-    NavHost(navController = navController, startDestination = Screen.HomeScreen.route) {
+    val navController = rememberAnimatedNavController()
+    AnimatedNavHost(navController = navController, startDestination = Screen.HomeScreen.route) {
 
         // home screen
         composable(route = Screen.HomeScreen.route) {
@@ -42,7 +47,19 @@ fun Navigation(
                     defaultValue = "Reza"
                     nullable = true
                 }
-            )
+            ),
+            enterTransition = { _, _ ->
+                slideInHorizontally(initialOffsetX = { 1000 })
+            },
+            exitTransition = { _, _ ->
+                slideOutHorizontally(targetOffsetX = { -1000 })
+            },
+            popEnterTransition = { _, _ ->
+                slideInHorizontally(initialOffsetX = { -1000 })
+            },
+            popExitTransition = { _, _ ->
+                slideOutHorizontally(targetOffsetX = { 1000 })
+            }
         ) { entry ->
             SavedScreen(
                 navController = navController,
@@ -59,7 +76,19 @@ fun Navigation(
                     defaultValue = "Reza"
                     nullable = true
                 }
-            )
+            ),
+            enterTransition = { _, _ ->
+                slideInHorizontally(initialOffsetX = { 1000 })
+            },
+            exitTransition = { _, _ ->
+                slideOutHorizontally(targetOffsetX = { -1000 })
+            },
+            popEnterTransition = { _, _ ->
+                slideInHorizontally(initialOffsetX = { -1000 })
+            },
+            popExitTransition = { _, _ ->
+                slideOutHorizontally(targetOffsetX = { 1000 })
+            }
         ) { entry ->
             DetailScreen(
                 navController = navController,

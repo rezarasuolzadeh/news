@@ -2,7 +2,6 @@ package ir.rezarasuolzadeh.news.presentation.ui.nav
 
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.slideInHorizontally
-import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -28,10 +27,27 @@ fun Navigation(
     newsViewModel: NewsViewModel
 ) {
     val navController = rememberAnimatedNavController()
-    AnimatedNavHost(navController = navController, startDestination = Screen.HomeScreen.route) {
+    AnimatedNavHost(
+        navController = navController,
+        startDestination = Screen.HomeScreen.route
+    ) {
 
         // home screen
-        composable(route = Screen.HomeScreen.route) {
+        composable(
+            route = Screen.HomeScreen.route,
+            enterTransition = { _, _ ->
+                slideInHorizontally(initialOffsetX = { 1000 })
+            },
+            exitTransition = { _, _ ->
+                slideOutHorizontally(targetOffsetX = { -1000 })
+            },
+            popEnterTransition = { _, _ ->
+                slideInHorizontally(initialOffsetX = { -1000 })
+            },
+            popExitTransition = { _, _ ->
+                slideOutHorizontally(targetOffsetX = { 1000 })
+            }
+        ) {
             HomeScreen(
                 navController = navController,
                 newsViewModel = newsViewModel

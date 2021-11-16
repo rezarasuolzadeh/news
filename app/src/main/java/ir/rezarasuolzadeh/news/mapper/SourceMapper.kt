@@ -1,6 +1,6 @@
 package ir.rezarasuolzadeh.news.mapper
 
-import ir.rezarasuolzadeh.news.mapper.interfaces.Mapper
+import ir.rezarasuolzadeh.news.utils.interfaces.Mapper
 import ir.rezarasuolzadeh.news.model.SourceModel
 import ir.rezarasuolzadeh.news.response.SourceResponse
 import javax.inject.Inject

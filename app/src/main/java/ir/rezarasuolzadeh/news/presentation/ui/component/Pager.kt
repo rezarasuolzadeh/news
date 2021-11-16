@@ -10,14 +10,22 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.ScaleFactor
 import androidx.compose.ui.layout.lerp
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import coil.annotation.ExperimentalCoilApi
 import com.google.accompanist.pager.*
 import ir.rezarasuolzadeh.news.model.NewsModel
-import ir.rezarasuolzadeh.news.presentation.ui.theme.*
+import ir.rezarasuolzadeh.news.presentation.ui.theme.LightGrey
+import ir.rezarasuolzadeh.news.presentation.ui.theme.MediumGrey
+import ir.rezarasuolzadeh.news.presentation.ui.theme.Yellow
 import kotlin.math.absoluteValue
 
+@ExperimentalCoilApi
 @ExperimentalPagerApi
 @Composable
-fun Pager(newsList: List<NewsModel>) {
+fun Pager(
+    newsList: List<NewsModel>,
+    navController: NavController
+) {
     val pagerState = rememberPagerState(
         pageCount = newsList.size,
         initialOffscreenLimit = 2,
@@ -53,7 +61,8 @@ fun Pager(newsList: List<NewsModel>) {
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 ItemHeaderPager(
-                    news = newsList[index]
+                    news = newsList[index],
+                    navController = navController
                 )
             }
         }

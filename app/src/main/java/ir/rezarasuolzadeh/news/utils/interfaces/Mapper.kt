@@ -1,4 +1,4 @@
-package ir.rezarasuolzadeh.news.mapper.interfaces
+package ir.rezarasuolzadeh.news.utils.interfaces
 
 interface Mapper<Response, Model> {
 

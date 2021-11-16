@@ -1,6 +1,5 @@
 package ir.rezarasuolzadeh.news.presentation.ui.screens
 
-import android.widget.Toast
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -18,6 +17,7 @@ import com.google.accompanist.pager.ExperimentalPagerApi
 import ir.rezarasuolzadeh.news.model.NewsModel
 import ir.rezarasuolzadeh.news.presentation.ui.component.ToolbarDetail
 import ir.rezarasuolzadeh.news.presentation.ui.theme.LightGrey
+import ir.rezarasuolzadeh.news.utils.constants.Constants.NEWS_BUNDLE_KEY
 import ir.rezarasuolzadeh.news.utils.extentions.getParcelableBundle
 import ir.rezarasuolzadeh.news.utils.extentions.toast
 
@@ -33,7 +33,7 @@ fun DetailScreen(
     var news : NewsModel?
 
     LaunchedEffect(Unit) {
-        news = navController.getParcelableBundle("news") as NewsModel
+        news = navController.getParcelableBundle(NEWS_BUNDLE_KEY) as NewsModel
         context.toast(news?.title)
     }
 

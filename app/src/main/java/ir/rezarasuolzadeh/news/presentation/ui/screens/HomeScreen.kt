@@ -60,7 +60,10 @@ fun HomeScreen(
 
             if (headlineNews.isNotEmpty()) {
                 item {
-                    Pager(headlineNews)
+                    Pager(
+                        newsList = headlineNews,
+                        navController = navController
+                    )
                 }
             }
 

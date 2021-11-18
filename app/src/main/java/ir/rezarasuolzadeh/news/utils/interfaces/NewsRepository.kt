@@ -1,4 +1,4 @@
-package ir.rezarasuolzadeh.news.repository.interfaces
+package ir.rezarasuolzadeh.news.utils.interfaces
 
 import ir.rezarasuolzadeh.news.model.NewsModel
 

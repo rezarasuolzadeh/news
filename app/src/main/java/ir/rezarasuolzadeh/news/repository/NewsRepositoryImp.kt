@@ -4,7 +4,7 @@ import dagger.hilt.android.scopes.ActivityRetainedScoped
 import ir.rezarasuolzadeh.news.api.NewsAPI
 import ir.rezarasuolzadeh.news.model.NewsModel
 import ir.rezarasuolzadeh.news.mapper.NewsMapper
-import ir.rezarasuolzadeh.news.repository.interfaces.NewsRepository
+import ir.rezarasuolzadeh.news.utils.interfaces.NewsRepository
 import javax.inject.Inject
 
 @ActivityRetainedScoped

@@ -5,7 +5,7 @@ import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import ir.rezarasuolzadeh.news.repository.NewsRepositoryImp
-import ir.rezarasuolzadeh.news.repository.interfaces.NewsRepository
+import ir.rezarasuolzadeh.news.utils.interfaces.NewsRepository
 import javax.inject.Singleton
 
 @Module

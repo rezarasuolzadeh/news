@@ -34,13 +34,13 @@ fun HomeScreen(
     if (!initialApiCalled) {
         LaunchedEffect(Unit) {
             newsViewModel.fetchHeadlineNews()
-            newsViewModel.fetchTechnologyNews()
+//            newsViewModel.fetchTechnologyNews()
             initialApiCalled = true
         }
     }
 
     val headlineNews by newsViewModel.headlineNewsLiveData.observeAsState(emptyList())
-    val technologyNews by newsViewModel.technologyNewsLiveData.observeAsState(emptyList())
+//    val technologyNews by newsViewModel.technologyNewsLiveData.observeAsState(emptyList())
 
     Column(
         modifier = Modifier
@@ -67,15 +67,15 @@ fun HomeScreen(
                 }
             }
 
-            if (technologyNews.isNotEmpty()) {
+            if (headlineNews.isNotEmpty()) {
                 item {
                     ItemHeaderTitle("Technology News")
                 }
-                for (i in technologyNews.indices) {
+                for (i in headlineNews.indices) {
                     item {
                         ItemNews(
                             navController = navController,
-                            news = technologyNews[i]
+                            news = headlineNews[i]
                         )
                     }
                 }

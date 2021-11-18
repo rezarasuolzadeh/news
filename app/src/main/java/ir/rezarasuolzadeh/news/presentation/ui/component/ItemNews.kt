@@ -23,7 +23,7 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.navigation.NavController
 import coil.annotation.ExperimentalCoilApi
-import coil.compose.rememberImagePainter
+import ir.rezarasuolzadeh.news.R
 import ir.rezarasuolzadeh.news.model.NewsModel
 import ir.rezarasuolzadeh.news.presentation.ui.screens.Screen
 import ir.rezarasuolzadeh.news.presentation.ui.theme.Grey
@@ -32,6 +32,7 @@ import ir.rezarasuolzadeh.news.presentation.ui.theme.MediumGrey
 import ir.rezarasuolzadeh.news.presentation.ui.theme.RippleGrey
 import ir.rezarasuolzadeh.news.utils.constants.Constants.NEWS_BUNDLE_KEY
 import ir.rezarasuolzadeh.news.utils.extentions.putParcelableBundle
+import ir.rezarasuolzadeh.news.utils.library.paintImage
 
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi
@@ -93,10 +94,8 @@ fun ItemNews(
             )
         }
 
-        val painter = rememberImagePainter(data = news.image)
-
         Image(
-            painter = painter,
+            painter = paintImage(image = news.image),
             contentDescription = "",
             contentScale = ContentScale.FillBounds,
             modifier = Modifier

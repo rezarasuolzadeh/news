@@ -12,6 +12,7 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
@@ -23,13 +24,18 @@ import coil.annotation.ExperimentalCoilApi
 import ir.rezarasuolzadeh.news.R
 import ir.rezarasuolzadeh.news.presentation.ui.theme.Grey
 import ir.rezarasuolzadeh.news.presentation.ui.theme.MediumGrey
+import ir.rezarasuolzadeh.news.utils.intents.Intents
 
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi
 @Composable
 fun ToolbarDetail(
-    navController: NavController
+    navController: NavController,
+    url: String
 ) {
+
+    val context = LocalContext.current
+
     Column {
         ConstraintLayout(
             modifier = Modifier
@@ -37,7 +43,7 @@ fun ToolbarDetail(
                 .height(60.dp)
                 .background(White)
         ) {
-            val (backImage, titleText) = createRefs()
+            val (backImage, titleText, shareImage) = createRefs()
 
             Image(
                 painter = painterResource(R.drawable.ic_back),
@@ -70,6 +76,29 @@ fun ToolbarDetail(
                         bottom.linkTo(parent.bottom, margin = 5.dp)
                         start.linkTo(backImage.end, margin = 10.dp)
                     }
+            )
+
+            Image(
+                painter = painterResource(R.drawable.ic_share),
+                contentDescription = "",
+                contentScale = ContentScale.FillBounds,
+                modifier = Modifier
+                    .size(25.dp, 25.dp)
+                    .constrainAs(shareImage) {
+                        top.linkTo(parent.top)
+                        bottom.linkTo(parent.bottom)
+                        end.linkTo(parent.end, margin = 30.dp)
+                    }
+                    .clickable(
+                        indication = null,
+                        interactionSource = remember { MutableInteractionSource() },
+                        onClick = {
+                            Intents.shareUrlIntent(
+                                context = context,
+                                url = url
+                            )
+                        }
+                    )
             )
         }
 

@@ -1,8 +1,7 @@
 package ir.rezarasuolzadeh.news.presentation.ui.nav
 
-import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.animation.slideInHorizontally
-import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.*
+import androidx.compose.animation.core.tween
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.navigation.NavType
@@ -12,10 +11,13 @@ import com.google.accompanist.navigation.animation.AnimatedNavHost
 import com.google.accompanist.navigation.animation.composable
 import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import com.google.accompanist.pager.ExperimentalPagerApi
+import ir.rezarasuolzadeh.news.model.NewsModel
 import ir.rezarasuolzadeh.news.presentation.ui.screens.DetailScreen
 import ir.rezarasuolzadeh.news.presentation.ui.screens.HomeScreen
 import ir.rezarasuolzadeh.news.presentation.ui.screens.SavedScreen
 import ir.rezarasuolzadeh.news.presentation.ui.screens.Screen
+import ir.rezarasuolzadeh.news.utils.constants.Constants
+import ir.rezarasuolzadeh.news.utils.extentions.getParcelableBundle
 import ir.rezarasuolzadeh.news.viewmodel.NewsViewModel
 
 @ExperimentalAnimationApi
@@ -35,17 +37,17 @@ fun Navigation(
         // home screen
         composable(
             route = Screen.HomeScreen.route,
-            enterTransition = { _, _ ->
-                slideInHorizontally(initialOffsetX = { 1000 })
+            exitTransition = { _, target ->
+                slideOutHorizontally(
+                    targetOffsetX = { -300 },
+                    animationSpec = tween(300)
+                ) + fadeOut(animationSpec = tween(300))
             },
-            exitTransition = { _, _ ->
-                slideOutHorizontally(targetOffsetX = { -1000 })
-            },
-            popEnterTransition = { _, _ ->
-                slideInHorizontally(initialOffsetX = { -1000 })
-            },
-            popExitTransition = { _, _ ->
-                slideOutHorizontally(targetOffsetX = { 1000 })
+            popEnterTransition = { initial, _ ->
+                slideInHorizontally(
+                    initialOffsetX = { -300 },
+                    animationSpec = tween(300)
+                ) + fadeIn(animationSpec = tween(300))
             }
         ) {
             HomeScreen(
@@ -64,17 +66,17 @@ fun Navigation(
                     nullable = true
                 }
             ),
-            enterTransition = { _, _ ->
-                slideInHorizontally(initialOffsetX = { 1000 })
+            enterTransition = { initial, _ ->
+                slideInHorizontally(
+                    initialOffsetX = { 300 },
+                    animationSpec = tween(300)
+                ) + fadeIn(animationSpec = tween(300))
             },
-            exitTransition = { _, _ ->
-                slideOutHorizontally(targetOffsetX = { -1000 })
-            },
-            popEnterTransition = { _, _ ->
-                slideInHorizontally(initialOffsetX = { -1000 })
-            },
-            popExitTransition = { _, _ ->
-                slideOutHorizontally(targetOffsetX = { 1000 })
+            popExitTransition = { _, target ->
+                slideOutHorizontally(
+                    targetOffsetX = { 300 },
+                    animationSpec = tween(300)
+                ) + fadeOut(animationSpec = tween(300))
             }
         ) { entry ->
             SavedScreen(
@@ -93,22 +95,23 @@ fun Navigation(
                     nullable = true
                 }
             ),
-            enterTransition = { _, _ ->
-                slideInHorizontally(initialOffsetX = { 1000 })
+            enterTransition = { initial, _ ->
+                slideInHorizontally(
+                    initialOffsetX = { 300 },
+                    animationSpec = tween(300)
+                ) + fadeIn(animationSpec = tween(300))
             },
-            exitTransition = { _, _ ->
-                slideOutHorizontally(targetOffsetX = { -1000 })
-            },
-            popEnterTransition = { _, _ ->
-                slideInHorizontally(initialOffsetX = { -1000 })
-            },
-            popExitTransition = { _, _ ->
-                slideOutHorizontally(targetOffsetX = { 1000 })
+            popExitTransition = { _, target ->
+                slideOutHorizontally(
+                    targetOffsetX = { 300 },
+                    animationSpec = tween(300)
+                ) + fadeOut(animationSpec = tween(300))
             }
         ) { entry ->
             DetailScreen(
                 navController = navController,
-                name = entry.arguments?.getString("name")
+                name = entry.arguments?.getString("name"),
+                news = navController.getParcelableBundle(Constants.NEWS_BUNDLE_KEY) as NewsModel?
             )
         }
     }

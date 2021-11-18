@@ -25,8 +25,6 @@ import ir.rezarasuolzadeh.news.model.NewsModel
 import ir.rezarasuolzadeh.news.presentation.ui.component.ToolbarDetail
 import ir.rezarasuolzadeh.news.presentation.ui.theme.Grey
 import ir.rezarasuolzadeh.news.presentation.ui.theme.MediumGrey
-import ir.rezarasuolzadeh.news.utils.constants.Constants.NEWS_BUNDLE_KEY
-import ir.rezarasuolzadeh.news.utils.extentions.getParcelableBundle
 import ir.rezarasuolzadeh.news.utils.extentions.removeExtraChars
 import ir.rezarasuolzadeh.news.utils.intents.Intents
 import ir.rezarasuolzadeh.news.utils.library.paintImage
@@ -37,87 +35,86 @@ import ir.rezarasuolzadeh.news.utils.library.paintImage
 @Composable
 fun DetailScreen(
     navController: NavController,
-    name: String?
+    name: String?,
+    news: NewsModel?
 ) {
 
     val context = LocalContext.current
-    val news: NewsModel? = navController.getParcelableBundle(NEWS_BUNDLE_KEY) as NewsModel?
 
-    news?.let {
-        Column(
+    Column(
+        modifier = Modifier
+            .background(Color.White)
+            .fillMaxWidth()
+            .fillMaxHeight(),
+        verticalArrangement = Arrangement.Top,
+        horizontalAlignment = Alignment.CenterHorizontally,
+    ) {
+        ToolbarDetail(
+            navController = navController,
+            url = news?.url.orEmpty()
+        )
+
+        Image(
+            painter = paintImage(image = news?.image.orEmpty()),
+            contentDescription = "",
+            contentScale = ContentScale.FillBounds,
             modifier = Modifier
-                .background(Color.White)
                 .fillMaxWidth()
-                .fillMaxHeight(),
-            verticalArrangement = Arrangement.Top,
-            horizontalAlignment = Alignment.CenterHorizontally,
-        ) {
-            ToolbarDetail(
-                navController = navController,
-                url = it.url
-            )
+                .height(300.dp)
+        )
 
-            Image(
-                painter = paintImage(image = news.image),
-                contentDescription = "",
-                contentScale = ContentScale.FillBounds,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(300.dp)
-            )
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(0.5.dp)
+                .background(MediumGrey)
+        )
 
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(0.5.dp)
-                    .background(MediumGrey)
-            )
+        Text(
+            text = news?.sourceModel?.name.orEmpty(),
+            style = TextStyle(
+                color = MediumGrey,
+                fontFamily = FontFamily.SansSerif,
+                fontSize = 10.sp
+            ),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 30.dp, top = 15.dp)
+                .clickable(
+                    indication = null,
+                    interactionSource = remember { MutableInteractionSource() },
+                    onClick = {
+                        Intents.openUrlIntent(
+                            context = context,
+                            url = news?.sourceModel?.url.orEmpty()
+                        )
+                    }
+                )
+        )
 
-            Text(
-                text = it.sourceModel?.name.orEmpty(),
-                style = TextStyle(
-                    color = MediumGrey,
-                    fontFamily = FontFamily.SansSerif,
-                    fontSize = 10.sp
-                ),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 30.dp, top = 15.dp)
-                    .clickable(
-                        indication = null,
-                        interactionSource = remember { MutableInteractionSource() },
-                        onClick = {
-                            Intents.openUrlIntent(
-                                context = context,
-                                url = it.sourceModel?.url.orEmpty()
-                            )
-                        }
-                    )
-            )
+        Text(
+            text = news?.title.orEmpty(),
+            style = TextStyle(
+                color = Grey,
+                fontFamily = FontFamily.SansSerif,
+                fontSize = 18.sp
+            ),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 30.dp, end = 30.dp, top = 15.dp)
+        )
 
-            Text(
-                text = it.title,
-                style = TextStyle(
-                    color = Grey,
-                    fontFamily = FontFamily.SansSerif,
-                    fontSize = 18.sp
-                ),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 30.dp, end = 30.dp, top = 15.dp)
-            )
-
-            Text(
-                text = it.description.plus(it.content.removeExtraChars()),
-                style = TextStyle(
-                    color = Grey,
-                    fontFamily = FontFamily.SansSerif,
-                    fontSize = 15.sp
-                ),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(start = 30.dp, end = 30.dp, top = 15.dp)
-            )
-        }
+        Text(
+            text = news?.description.plus(news?.content?.removeExtraChars()),
+            style = TextStyle(
+                color = Grey,
+                fontFamily = FontFamily.SansSerif,
+                fontSize = 15.sp
+            ),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(start = 30.dp, end = 30.dp, top = 15.dp)
+        )
     }
+
 }

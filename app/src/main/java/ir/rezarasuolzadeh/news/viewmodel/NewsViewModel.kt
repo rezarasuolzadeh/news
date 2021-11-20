@@ -15,6 +15,10 @@ class NewsViewModel @Inject constructor(
     private val repository: NewsRepositoryImp,
 ) : ViewModel() {
 
+    init {
+        fetchHeadlineNews()
+    }
+
     private val headlineNews = MutableLiveData<List<NewsModel>>()
     val headlineNewsLiveData: LiveData<List<NewsModel>>
         get() = headlineNews
@@ -24,11 +28,15 @@ class NewsViewModel @Inject constructor(
         get() = technologyNews
 
     fun fetchHeadlineNews() = viewModelScope.launch {
-        headlineNews.postValue(repository.getHeadlineNews())
+        headlineNews.value = (repository.getHeadlineNews())
     }
 
     fun fetchTechnologyNews() = viewModelScope.launch {
         technologyNews.postValue(repository.getOtherNews(q = "space"))
+    }
+
+    fun addSavedNews(news: NewsModel) = viewModelScope.launch {
+        repository.insertSavedNews(news)
     }
 
 }

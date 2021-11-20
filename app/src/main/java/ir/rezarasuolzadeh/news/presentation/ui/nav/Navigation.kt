@@ -2,6 +2,7 @@ package ir.rezarasuolzadeh.news.presentation.ui.nav
 
 import androidx.compose.animation.*
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.navigation.NavType
@@ -19,15 +20,15 @@ import ir.rezarasuolzadeh.news.presentation.ui.screens.Screen
 import ir.rezarasuolzadeh.news.utils.constants.Constants
 import ir.rezarasuolzadeh.news.utils.extentions.getParcelableBundle
 import ir.rezarasuolzadeh.news.viewmodel.NewsViewModel
+import ir.rezarasuolzadeh.news.viewmodel.SavedNewsViewModel
 
+@ExperimentalFoundationApi
 @ExperimentalAnimationApi
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi
 @ExperimentalPagerApi
 @Composable
-fun Navigation(
-    newsViewModel: NewsViewModel
-) {
+fun Navigation() {
     val navController = rememberAnimatedNavController()
     AnimatedNavHost(
         navController = navController,
@@ -52,7 +53,7 @@ fun Navigation(
         ) {
             HomeScreen(
                 navController = navController,
-                newsViewModel = newsViewModel
+//                newsViewModel = newsViewModel
             )
         }
 

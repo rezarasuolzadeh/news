@@ -6,12 +6,13 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.annotation.ExperimentalCoilApi
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -28,16 +29,16 @@ import ir.rezarasuolzadeh.news.viewmodel.NewsViewModel
 @Composable
 fun HomeScreen(
     navController: NavController,
-    newsViewModel: NewsViewModel
+    newsViewModel: NewsViewModel = hiltViewModel()
 ) {
-    var initialApiCalled by rememberSaveable { mutableStateOf(false) }
-    if (!initialApiCalled) {
-        LaunchedEffect(Unit) {
-            newsViewModel.fetchHeadlineNews()
-//            newsViewModel.fetchTechnologyNews()
-            initialApiCalled = true
-        }
-    }
+//    var initialApiCalled by rememberSaveable { mutableStateOf(false) }
+//    if (!initialApiCalled) {
+//        LaunchedEffect(Unit) {
+//            newsViewModel.fetchHeadlineNews()
+////            newsViewModel.fetchTechnologyNews()
+//            initialApiCalled = true
+//        }
+//    }
 
     val headlineNews by newsViewModel.headlineNewsLiveData.observeAsState(emptyList())
 //    val technologyNews by newsViewModel.technologyNewsLiveData.observeAsState(emptyList())
@@ -82,4 +83,5 @@ fun HomeScreen(
             }
         }
     }
+
 }

@@ -8,4 +8,10 @@ interface NewsRepository {
 
     suspend fun getOtherNews(q: String): List<NewsModel>
 
+    suspend fun getSavedNews(): List<NewsModel>
+
+    suspend fun insertSavedNews(news: NewsModel)
+
+    suspend fun deleteNews(news: NewsModel)
+
 }

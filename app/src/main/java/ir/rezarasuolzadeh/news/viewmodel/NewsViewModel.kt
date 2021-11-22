@@ -15,10 +15,6 @@ class NewsViewModel @Inject constructor(
     private val repository: NewsRepositoryImp,
 ) : ViewModel() {
 
-    init {
-        fetchHeadlineNews()
-    }
-
     private val headlineNews = MutableLiveData<List<NewsModel>>()
     val headlineNewsLiveData: LiveData<List<NewsModel>>
         get() = headlineNews

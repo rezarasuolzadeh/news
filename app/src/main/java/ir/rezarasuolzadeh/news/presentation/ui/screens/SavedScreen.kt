@@ -62,7 +62,8 @@ fun SavedScreen(
             savedNews.map {
                 item {
                     ItemSavedNews(
-                        news = it
+                        news = it,
+                        navController = navController
                     )
                 }
             }

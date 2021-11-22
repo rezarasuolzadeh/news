@@ -19,8 +19,6 @@ import ir.rezarasuolzadeh.news.presentation.ui.screens.SavedScreen
 import ir.rezarasuolzadeh.news.presentation.ui.screens.Screen
 import ir.rezarasuolzadeh.news.utils.constants.Constants
 import ir.rezarasuolzadeh.news.utils.extentions.getParcelableBundle
-import ir.rezarasuolzadeh.news.viewmodel.NewsViewModel
-import ir.rezarasuolzadeh.news.viewmodel.SavedNewsViewModel
 
 @ExperimentalFoundationApi
 @ExperimentalAnimationApi
@@ -52,8 +50,7 @@ fun Navigation() {
             }
         ) {
             HomeScreen(
-                navController = navController,
-//                newsViewModel = newsViewModel
+                navController = navController
             )
         }
 
@@ -73,11 +70,23 @@ fun Navigation() {
                     animationSpec = tween(300)
                 ) + fadeIn(animationSpec = tween(300))
             },
+            exitTransition = { _, target ->
+                slideOutHorizontally(
+                    targetOffsetX = { -300 },
+                    animationSpec = tween(300)
+                ) + fadeOut(animationSpec = tween(300))
+            },
             popExitTransition = { _, target ->
                 slideOutHorizontally(
                     targetOffsetX = { 300 },
                     animationSpec = tween(300)
                 ) + fadeOut(animationSpec = tween(300))
+            },
+            popEnterTransition = { initial, _ ->
+                slideInHorizontally(
+                    initialOffsetX = { -300 },
+                    animationSpec = tween(300)
+                ) + fadeIn(animationSpec = tween(300))
             }
         ) { entry ->
             SavedScreen(

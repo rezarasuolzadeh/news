@@ -25,18 +25,22 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
+import androidx.navigation.NavController
 import coil.annotation.ExperimentalCoilApi
 import ir.rezarasuolzadeh.news.model.NewsModel
+import ir.rezarasuolzadeh.news.presentation.ui.screens.Screen
 import ir.rezarasuolzadeh.news.presentation.ui.theme.LightGrey
 import ir.rezarasuolzadeh.news.presentation.ui.theme.RippleGrey
 import ir.rezarasuolzadeh.news.presentation.ui.theme.RippleWhite
+import ir.rezarasuolzadeh.news.utils.constants.Constants.NEWS_BUNDLE_KEY
+import ir.rezarasuolzadeh.news.utils.extentions.putParcelableBundle
 import ir.rezarasuolzadeh.news.utils.library.paintImage
 
 @ExperimentalCoilApi
 @Composable
 fun ItemSavedNews(
     news: NewsModel,
-//    navController: NavController
+    navController: NavController
 ) {
     Card(
         shape = RoundedCornerShape(20.dp),
@@ -69,8 +73,8 @@ fun ItemSavedNews(
                         interactionSource = remember { MutableInteractionSource() },
                         indication = rememberRipple(color = RippleWhite),
                         onClick = {
-//                            navController.putParcelableBundle(key = NEWS_BUNDLE_KEY, value = news)
-//                            navController.navigate(Screen.DetailScreen.withArgs("ali"))
+                            navController.putParcelableBundle(key = NEWS_BUNDLE_KEY, value = news)
+                            navController.navigate(Screen.DetailScreen.withArgs("ali"))
                         }
                     )
             )

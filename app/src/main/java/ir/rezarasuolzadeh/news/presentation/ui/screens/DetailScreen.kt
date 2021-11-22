@@ -18,6 +18,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.annotation.ExperimentalCoilApi
 import com.google.accompanist.pager.ExperimentalPagerApi
@@ -28,6 +29,7 @@ import ir.rezarasuolzadeh.news.presentation.ui.theme.MediumGrey
 import ir.rezarasuolzadeh.news.utils.extentions.removeExtraChars
 import ir.rezarasuolzadeh.news.utils.intents.Intents
 import ir.rezarasuolzadeh.news.utils.library.paintImage
+import ir.rezarasuolzadeh.news.viewmodel.DetailViewModel
 
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi
@@ -36,7 +38,8 @@ import ir.rezarasuolzadeh.news.utils.library.paintImage
 fun DetailScreen(
     navController: NavController,
     name: String?,
-    news: NewsModel?
+    news: NewsModel?,
+    detailViewModel: DetailViewModel = hiltViewModel()
 ) {
 
     val context = LocalContext.current

@@ -18,4 +18,7 @@ interface SavedNewsDao {
     @Query("SELECT * FROM $SAVED_NEWS_TABLE")
     suspend fun getAllNews(): List<NewsEntity>
 
+    @Query("SELECT EXISTS (SELECT 1 FROM $SAVED_NEWS_TABLE WHERE url = :url)")
+    suspend fun existNews(url: String): Boolean
+
 }

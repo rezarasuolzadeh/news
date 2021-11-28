@@ -1,13 +1,15 @@
 package ir.rezarasuolzadeh.news.presentation.ui.screens
 
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -21,6 +23,7 @@ import ir.rezarasuolzadeh.news.presentation.ui.component.ToolbarSaved
 import ir.rezarasuolzadeh.news.presentation.ui.theme.LightGrey
 import ir.rezarasuolzadeh.news.viewmodel.SavedNewsViewModel
 
+@ExperimentalAnimationApi
 @ExperimentalFoundationApi
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi
@@ -31,12 +34,8 @@ fun SavedScreen(
     name: String?,
     savedNewsViewModel: SavedNewsViewModel = hiltViewModel()
 ) {
-    var initialApiCalled by rememberSaveable { mutableStateOf(false) }
-    if (!initialApiCalled) {
-        LaunchedEffect(Unit) {
-            savedNewsViewModel.fetchSavedNews()
-            initialApiCalled = true
-        }
+    LaunchedEffect(Unit) {
+        savedNewsViewModel.fetchSavedNews()
     }
 
     val savedNews by savedNewsViewModel.savedNewsLiveData.observeAsState(emptyList())

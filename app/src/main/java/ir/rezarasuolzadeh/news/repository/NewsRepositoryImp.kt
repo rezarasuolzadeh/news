@@ -49,4 +49,8 @@ class NewsRepositoryImp @Inject constructor(
         savedNewsDao.deleteNews(savedNewsMapper.mapResponseToModel(news))
     }
 
+    override suspend fun existNews(url: String) : Boolean {
+        return savedNewsDao.existNews(url)
+    }
+
 }

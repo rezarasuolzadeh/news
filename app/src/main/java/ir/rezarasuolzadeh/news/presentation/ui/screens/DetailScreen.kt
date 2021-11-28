@@ -6,22 +6,26 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
+import androidx.compose.runtime.*
+import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.annotation.ExperimentalCoilApi
 import com.google.accompanist.pager.ExperimentalPagerApi
+import ir.rezarasuolzadeh.news.R
 import ir.rezarasuolzadeh.news.model.NewsModel
 import ir.rezarasuolzadeh.news.presentation.ui.component.ToolbarDetail
 import ir.rezarasuolzadeh.news.presentation.ui.theme.Grey
@@ -41,6 +45,16 @@ fun DetailScreen(
     news: NewsModel?,
     detailViewModel: DetailViewModel = hiltViewModel()
 ) {
+
+    var initialApiCalled by rememberSaveable { mutableStateOf(false) }
+    if (!initialApiCalled) {
+        LaunchedEffect(Unit) {
+            detailViewModel.fetchExistNews(news?.url.orEmpty())
+            initialApiCalled = true
+        }
+    }
+
+    val existNews by detailViewModel.existNewsLiveData.observeAsState(false)
 
     val context = LocalContext.current
 
@@ -73,27 +87,66 @@ fun DetailScreen(
                 .background(MediumGrey)
         )
 
-        Text(
-            text = news?.sourceModel?.name.orEmpty(),
-            style = TextStyle(
-                color = MediumGrey,
-                fontFamily = FontFamily.SansSerif,
-                fontSize = 10.sp
-            ),
+        ConstraintLayout(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(start = 30.dp, top = 15.dp)
-                .clickable(
-                    indication = null,
-                    interactionSource = remember { MutableInteractionSource() },
-                    onClick = {
-                        Intents.openUrlIntent(
-                            context = context,
-                            url = news?.sourceModel?.url.orEmpty()
-                        )
+                .height(40.dp)
+                .background(Color.White)
+        ) {
+            val (savedButton, sourceName) = createRefs()
+
+            Text(
+                text = news?.sourceModel?.name.orEmpty(),
+                style = TextStyle(
+                    color = MediumGrey,
+                    fontFamily = FontFamily.SansSerif,
+                    fontSize = 10.sp
+                ),
+                modifier = Modifier
+                    .padding(start = 30.dp)
+                    .constrainAs(sourceName) {
+                        top.linkTo(parent.top)
+                        bottom.linkTo(parent.bottom)
+                        start.linkTo(parent.start)
                     }
-                )
-        )
+                    .clickable(
+                        indication = null,
+                        interactionSource = remember { MutableInteractionSource() },
+                        onClick = {
+                            Intents.openUrlIntent(
+                                context = context,
+                                url = news?.sourceModel?.url.orEmpty()
+                            )
+                        }
+                    )
+            )
+            Image(
+                painter = if (existNews) painterResource(R.drawable.ic_saved_fill) else painterResource(
+                    R.drawable.ic_saved
+                ),
+                contentDescription = "",
+                contentScale = ContentScale.FillBounds,
+                modifier = Modifier
+                    .size(23.dp, 23.dp)
+                    .constrainAs(savedButton) {
+                        top.linkTo(parent.top)
+                        bottom.linkTo(parent.bottom)
+                        end.linkTo(parent.end, margin = 30.dp)
+                    }
+                    .clickable(
+                        indication = null,
+                        interactionSource = remember { MutableInteractionSource() },
+                        onClick = {
+                            news?.let {
+                                if (existNews)
+                                    detailViewModel.fetchDeleteNews(it)
+                                else
+                                    detailViewModel.fetchSaveNews(it)
+                            }
+                        }
+                    )
+            )
+        }
 
         Text(
             text = news?.title.orEmpty(),

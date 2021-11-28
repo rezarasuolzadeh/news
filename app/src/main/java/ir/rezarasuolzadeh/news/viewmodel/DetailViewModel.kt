@@ -15,17 +15,22 @@ class DetailViewModel @Inject constructor(
     private val repository: NewsRepositoryImp
 ) : ViewModel() {
 
-    private val isNewsSaved = MutableLiveData<Boolean>()
-    val isNewsSavedLiveData: LiveData<Boolean>
-        get() = isNewsSaved
+    private val existNews = MutableLiveData<Boolean>()
+    val existNewsLiveData: LiveData<Boolean>
+        get() = existNews
 
-    fun fetchHeadlineNews() = viewModelScope.launch {
-//        isNewsSaved.value = (repository.getHeadlineNews())
+    fun fetchExistNews(url: String) = viewModelScope.launch {
+        existNews.value = (repository.existNews(url))
     }
 
-    fun addSavedNews(news: NewsModel) = viewModelScope.launch {
+    fun fetchDeleteNews(news: NewsModel) = viewModelScope.launch {
+        repository.deleteNews(news)
+        fetchExistNews(news.url)
+    }
+
+    fun fetchSaveNews(news: NewsModel) = viewModelScope.launch {
         repository.insertSavedNews(news)
-        isNewsSaved.value = true
+        fetchExistNews(news.url)
     }
 
 }

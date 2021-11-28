@@ -14,4 +14,6 @@ interface NewsRepository {
 
     suspend fun deleteNews(news: NewsModel)
 
+    suspend fun existNews(url: String): Boolean
+
 }

@@ -20,6 +20,7 @@ import coil.annotation.ExperimentalCoilApi
 import com.google.accompanist.pager.ExperimentalPagerApi
 import ir.rezarasuolzadeh.news.presentation.ui.component.ItemSavedNews
 import ir.rezarasuolzadeh.news.presentation.ui.component.ToolbarSaved
+import ir.rezarasuolzadeh.news.presentation.ui.component.ViewEmpty
 import ir.rezarasuolzadeh.news.presentation.ui.theme.LightGrey
 import ir.rezarasuolzadeh.news.viewmodel.SavedNewsViewModel
 
@@ -50,23 +51,26 @@ fun SavedScreen(
     ) {
         ToolbarSaved(navController = navController)
 
-        LazyVerticalGrid(
-            modifier = Modifier
-                .fillMaxHeight()
-                .fillMaxWidth()
-                .background(LightGrey),
-            cells = GridCells.Fixed(2),
-            contentPadding = PaddingValues(8.dp)
-        ) {
-            savedNews.map {
-                item {
-                    ItemSavedNews(
-                        news = it,
-                        navController = navController
-                    )
+        if (savedNews.isEmpty())
+            ViewEmpty()
+        else
+            LazyVerticalGrid(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .fillMaxWidth()
+                    .background(LightGrey),
+                cells = GridCells.Fixed(2),
+                contentPadding = PaddingValues(8.dp)
+            ) {
+                savedNews.map {
+                    item {
+                        ItemSavedNews(
+                            news = it,
+                            navController = navController
+                        )
+                    }
                 }
             }
-        }
     }
 
 }

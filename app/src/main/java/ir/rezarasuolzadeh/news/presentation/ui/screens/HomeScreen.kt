@@ -11,6 +11,7 @@ import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
@@ -21,6 +22,7 @@ import ir.rezarasuolzadeh.news.presentation.ui.component.ItemNews
 import ir.rezarasuolzadeh.news.presentation.ui.component.Pager
 import ir.rezarasuolzadeh.news.presentation.ui.component.ToolbarHome
 import ir.rezarasuolzadeh.news.presentation.ui.theme.LightGrey
+import ir.rezarasuolzadeh.news.utils.extentions.toast
 import ir.rezarasuolzadeh.news.viewmodel.NewsViewModel
 
 @ExperimentalCoilApi
@@ -31,7 +33,10 @@ fun HomeScreen(
     navController: NavController,
     newsViewModel: NewsViewModel = hiltViewModel()
 ) {
+    val context = LocalContext.current
+
     var initialApiCalled by rememberSaveable { mutableStateOf(false) }
+
     if (!initialApiCalled) {
         LaunchedEffect(Unit) {
             newsViewModel.fetchHeadlineNews()
@@ -41,7 +46,12 @@ fun HomeScreen(
     }
 
     val headlineNews by newsViewModel.headlineNewsLiveData.observeAsState(emptyList())
+    val error by newsViewModel.errorLiveData.observeAsState(null)
 //    val technologyNews by newsViewModel.technologyNewsLiveData.observeAsState(emptyList())
+
+    error?.let { 
+        context.toast("Error happening!")
+    }
 
     Column(
         modifier = Modifier

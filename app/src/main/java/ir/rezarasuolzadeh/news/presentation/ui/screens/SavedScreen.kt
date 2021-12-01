@@ -22,7 +22,7 @@ import ir.rezarasuolzadeh.news.presentation.ui.component.ItemSavedNews
 import ir.rezarasuolzadeh.news.presentation.ui.component.ToolbarSaved
 import ir.rezarasuolzadeh.news.presentation.ui.component.ViewEmpty
 import ir.rezarasuolzadeh.news.presentation.ui.theme.LightGrey
-import ir.rezarasuolzadeh.news.viewmodel.SavedNewsViewModel
+import ir.rezarasuolzadeh.news.viewmodel.SavedViewModel
 
 @ExperimentalAnimationApi
 @ExperimentalFoundationApi
@@ -33,13 +33,13 @@ import ir.rezarasuolzadeh.news.viewmodel.SavedNewsViewModel
 fun SavedScreen(
     navController: NavController,
     name: String?,
-    savedNewsViewModel: SavedNewsViewModel = hiltViewModel()
+    savedViewModel: SavedViewModel = hiltViewModel()
 ) {
     LaunchedEffect(Unit) {
-        savedNewsViewModel.fetchSavedNews()
+        savedViewModel.fetchSavedNews()
     }
 
-    val savedNews by savedNewsViewModel.savedNewsLiveData.observeAsState(emptyList())
+    val savedNews by savedViewModel.savedNewsLiveData.observeAsState(emptyList())
 
     Column(
         modifier = Modifier

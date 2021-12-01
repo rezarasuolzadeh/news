@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SavedNewsViewModel @Inject constructor(
+class SavedViewModel @Inject constructor(
     private val repository: NewsRepositoryImp
 ) : BaseViewModel() {
 

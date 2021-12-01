@@ -13,6 +13,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -25,7 +26,7 @@ import ir.rezarasuolzadeh.news.presentation.ui.theme.Grey
 @ExperimentalComposeUiApi
 @Preview(showSystemUi = true, device = Devices.PIXEL_4)
 @Composable
-fun ViewEmpty() {
+fun ViewError() {
     Column(
         modifier = Modifier
             .fillMaxWidth()
@@ -36,7 +37,7 @@ fun ViewEmpty() {
     ) {
 
         Image(
-            painter = painterResource(R.drawable.no_content),
+            painter = painterResource(R.drawable.no_internet),
             contentDescription = "",
             contentScale = ContentScale.Inside,
             modifier = Modifier
@@ -45,12 +46,13 @@ fun ViewEmpty() {
         )
 
         Text(
-            text = "there is no news here for now",
+            text = "something went wrong in connecting",
             style = TextStyle(
                 color = Grey,
                 fontFamily = FontFamily.SansSerif,
                 fontSize = 14.sp
             ),
+            textAlign = TextAlign.Center,
             modifier = Modifier
                 .padding(top = 10.dp)
         )

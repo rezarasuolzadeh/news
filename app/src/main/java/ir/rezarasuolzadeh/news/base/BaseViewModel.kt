@@ -7,9 +7,9 @@ import androidx.lifecycle.ViewModel
 import ir.rezarasuolzadeh.news.utils.constants.Constants.EXCEPTION_LOG_KEY
 import kotlinx.coroutines.CoroutineExceptionHandler
 
-abstract class BaseViewModel: ViewModel() {
+abstract class BaseViewModel : ViewModel() {
 
-    private val error = MutableLiveData<Boolean>(null)
+    private val error = MutableLiveData(false)
     val errorLiveData: LiveData<Boolean>
         get() = error
 

@@ -6,8 +6,6 @@ interface NewsRepository {
 
     suspend fun getHeadlineNews(): List<NewsModel>
 
-    suspend fun getOtherNews(q: String): List<NewsModel>
-
     suspend fun getSavedNews(): List<NewsModel>
 
     suspend fun insertSavedNews(news: NewsModel)

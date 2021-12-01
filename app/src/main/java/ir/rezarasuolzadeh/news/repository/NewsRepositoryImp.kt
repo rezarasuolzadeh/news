@@ -25,14 +25,6 @@ class NewsRepositoryImp @Inject constructor(
         }
     }
 
-    override suspend fun getOtherNews(q: String): List<NewsModel> {
-        return newsAPI.getOtherNews(q = q).articles.map {
-            mapper.mapResponseToModel(
-                it
-            )
-        }
-    }
-
     override suspend fun getSavedNews(): List<NewsModel> {
         return savedNewsDao.getAllNews().map {
             savedNewsMapper.mapModelToResponse(

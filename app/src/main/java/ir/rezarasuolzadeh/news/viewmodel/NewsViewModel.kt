@@ -7,6 +7,7 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import ir.rezarasuolzadeh.news.base.BaseViewModel
 import ir.rezarasuolzadeh.news.model.NewsModel
 import ir.rezarasuolzadeh.news.repository.NewsRepositoryImp
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -24,6 +25,7 @@ class NewsViewModel @Inject constructor(
         get() = technologyNews
 
     fun fetchHeadlineNews() = viewModelScope.launch(exceptionHandler) {
+        delay(5000)
         headlineNews.value = (repository.getHeadlineNews())
     }
 

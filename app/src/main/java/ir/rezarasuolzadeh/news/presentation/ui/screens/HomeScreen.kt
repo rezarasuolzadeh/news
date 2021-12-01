@@ -17,10 +17,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.annotation.ExperimentalCoilApi
 import com.google.accompanist.pager.ExperimentalPagerApi
-import ir.rezarasuolzadeh.news.presentation.ui.component.ItemHeaderTitle
-import ir.rezarasuolzadeh.news.presentation.ui.component.ItemNews
-import ir.rezarasuolzadeh.news.presentation.ui.component.Pager
-import ir.rezarasuolzadeh.news.presentation.ui.component.ToolbarHome
+import ir.rezarasuolzadeh.news.presentation.ui.component.*
 import ir.rezarasuolzadeh.news.presentation.ui.theme.LightGrey
 import ir.rezarasuolzadeh.news.utils.extentions.toast
 import ir.rezarasuolzadeh.news.viewmodel.NewsViewModel
@@ -40,16 +37,14 @@ fun HomeScreen(
     if (!initialApiCalled) {
         LaunchedEffect(Unit) {
             newsViewModel.fetchHeadlineNews()
-//            newsViewModel.fetchTechnologyNews()
             initialApiCalled = true
         }
     }
 
     val headlineNews by newsViewModel.headlineNewsLiveData.observeAsState(emptyList())
     val error by newsViewModel.errorLiveData.observeAsState(null)
-//    val technologyNews by newsViewModel.technologyNewsLiveData.observeAsState(emptyList())
 
-    error?.let { 
+    error?.let {
         context.toast("Error happening!")
     }
 
@@ -61,37 +56,40 @@ fun HomeScreen(
     ) {
         ToolbarHome(navController)
 
-        LazyColumn(
-            modifier = Modifier
-                .fillMaxHeight()
-                .fillMaxWidth()
-                .background(LightGrey),
-            contentPadding = PaddingValues(bottom = 20.dp)
-        ) {
+        if(headlineNews.isEmpty()) {
+            HomeScreenShimmer()
+        } else {
+            LazyColumn(
+                modifier = Modifier
+                    .fillMaxHeight()
+                    .fillMaxWidth()
+                    .background(LightGrey),
+                contentPadding = PaddingValues(bottom = 20.dp)
+            ) {
 
-            if (headlineNews.isNotEmpty()) {
-                item {
-                    Pager(
-                        newsList = headlineNews,
-                        navController = navController
-                    )
-                }
-            }
-
-            if (headlineNews.isNotEmpty()) {
-                item {
-                    ItemHeaderTitle("Technology News")
-                }
-                for (i in headlineNews.indices) {
+                if (headlineNews.isNotEmpty()) {
                     item {
-                        ItemNews(
-                            navController = navController,
-                            news = headlineNews[i]
+                        Pager(
+                            newsList = headlineNews,
+                            navController = navController
                         )
+                    }
+                }
+
+                if (headlineNews.isNotEmpty()) {
+                    item {
+                        ItemHeaderTitle("Technology News")
+                    }
+                    for (i in headlineNews.indices) {
+                        item {
+                            ItemNews(
+                                navController = navController,
+                                news = headlineNews[i]
+                            )
+                        }
                     }
                 }
             }
         }
     }
-
 }

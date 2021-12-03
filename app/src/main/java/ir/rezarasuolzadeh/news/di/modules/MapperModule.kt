@@ -8,11 +8,11 @@ import ir.rezarasuolzadeh.news.database.model.NewsEntity
 import ir.rezarasuolzadeh.news.mapper.NewsMapper
 import ir.rezarasuolzadeh.news.mapper.SavedMapper
 import ir.rezarasuolzadeh.news.mapper.SourceMapper
-import ir.rezarasuolzadeh.news.utils.interfaces.Mapper
 import ir.rezarasuolzadeh.news.model.NewsModel
 import ir.rezarasuolzadeh.news.model.SourceModel
 import ir.rezarasuolzadeh.news.response.NewsResponse
 import ir.rezarasuolzadeh.news.response.SourceResponse
+import ir.rezarasuolzadeh.news.utils.interfaces.Mapper
 import javax.inject.Singleton
 
 @Module
@@ -21,20 +21,14 @@ abstract class MapperModule {
 
     @Binds
     @Singleton
-    abstract fun bindNewsMapper(
-        mapper: NewsMapper
-    ): Mapper<NewsResponse, NewsModel>
+    abstract fun bindNewsMapper(mapper: NewsMapper): Mapper<NewsResponse, NewsModel>
 
     @Binds
     @Singleton
-    abstract fun bindSourceMapper(
-        mapper: SourceMapper
-    ): Mapper<SourceResponse, SourceModel>
+    abstract fun bindSourceMapper(mapper: SourceMapper): Mapper<SourceResponse, SourceModel>
 
     @Binds
     @Singleton
-    abstract fun bindSavedNewsMapper(
-        mapper: SavedMapper
-    ): Mapper<NewsModel, NewsEntity>
+    abstract fun bindSavedNewsMapper(mapper: SavedMapper): Mapper<NewsModel, NewsEntity>
 
 }

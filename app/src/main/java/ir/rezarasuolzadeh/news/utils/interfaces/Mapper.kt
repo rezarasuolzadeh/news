@@ -1,9 +1,9 @@
 package ir.rezarasuolzadeh.news.utils.interfaces
 
-interface Mapper<Response, Model> {
+interface Mapper<First, Second> {
 
-    fun mapResponseToModel(response: Response): Model
+    fun mapResponseToModel(response: First): Second
 
-    fun mapModelToResponse(model: Model): Response
+    fun mapModelToResponse(model: Second): First
 
 }

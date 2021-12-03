@@ -4,8 +4,8 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import ir.rezarasuolzadeh.news.repository.NewsRepositoryImp
-import ir.rezarasuolzadeh.news.utils.interfaces.NewsRepository
+import ir.rezarasuolzadeh.news.repository.NewsRepository
+import ir.rezarasuolzadeh.news.utils.interfaces.Repository
 import javax.inject.Singleton
 
 @Module
@@ -14,8 +14,6 @@ abstract class RepositoryModule {
 
     @Binds
     @Singleton
-    abstract fun bindNewsRepository(
-        newsRepository: NewsRepositoryImp
-    ): NewsRepository
+    abstract fun bindNewsRepository(newsRepository: NewsRepository): Repository
 
 }

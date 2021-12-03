@@ -34,10 +34,6 @@ object NetworkModule {
 
     @Singleton
     @Provides
-    fun provideConverterFactory(): MoshiConverterFactory = MoshiConverterFactory.create()
-
-    @Singleton
-    @Provides
     fun provideRetrofit(
         okHttpClient: OkHttpClient,
         gsonConverterFactory: MoshiConverterFactory
@@ -48,6 +44,10 @@ object NetworkModule {
             .addConverterFactory(gsonConverterFactory)
             .build()
     }
+
+    @Singleton
+    @Provides
+    fun provideConverterFactory(): MoshiConverterFactory = MoshiConverterFactory.create()
 
     @Singleton
     @Provides

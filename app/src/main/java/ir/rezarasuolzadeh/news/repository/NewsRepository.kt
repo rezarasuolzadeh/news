@@ -6,16 +6,16 @@ import ir.rezarasuolzadeh.news.database.dao.SavedNewsDao
 import ir.rezarasuolzadeh.news.model.NewsModel
 import ir.rezarasuolzadeh.news.mapper.NewsMapper
 import ir.rezarasuolzadeh.news.mapper.SavedMapper
-import ir.rezarasuolzadeh.news.utils.interfaces.NewsRepository
+import ir.rezarasuolzadeh.news.utils.interfaces.Repository
 import javax.inject.Inject
 
 @ActivityRetainedScoped
-class NewsRepositoryImp @Inject constructor(
+class NewsRepository @Inject constructor(
     private val newsAPI: NewsAPI,
     private val savedNewsDao: SavedNewsDao,
     private val mapper: NewsMapper,
     private val savedNewsMapper: SavedMapper
-) : NewsRepository {
+) : Repository {
 
     override suspend fun getHeadlineNews(): List<NewsModel> {
         return newsAPI.getHeadlineNews().articles.map {

@@ -2,7 +2,7 @@ package ir.rezarasuolzadeh.news.utils.interfaces
 
 import ir.rezarasuolzadeh.news.model.NewsModel
 
-interface NewsRepository {
+interface Repository {
 
     suspend fun getHeadlineNews(): List<NewsModel>
 

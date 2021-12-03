@@ -6,13 +6,13 @@ import androidx.lifecycle.viewModelScope
 import dagger.hilt.android.lifecycle.HiltViewModel
 import ir.rezarasuolzadeh.news.base.BaseViewModel
 import ir.rezarasuolzadeh.news.model.NewsModel
-import ir.rezarasuolzadeh.news.repository.NewsRepositoryImp
+import ir.rezarasuolzadeh.news.repository.NewsRepository
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class DetailViewModel @Inject constructor(
-    private val repository: NewsRepositoryImp
+    private val repository: NewsRepository
 ) : BaseViewModel() {
 
     private val existNews = MutableLiveData<Boolean>()

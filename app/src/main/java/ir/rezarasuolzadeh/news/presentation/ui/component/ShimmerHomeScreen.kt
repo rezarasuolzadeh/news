@@ -138,5 +138,14 @@ fun HomeScreenShimmerItem(
                 }
             }
         }
+
+        item {
+            Spacer(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(15.dp)
+                    .clip(RoundedCornerShape(10.dp))
+            )
+        }
     }
 }

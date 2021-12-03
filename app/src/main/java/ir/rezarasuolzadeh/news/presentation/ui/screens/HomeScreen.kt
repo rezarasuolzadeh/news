@@ -32,17 +32,9 @@ fun HomeScreen(
     navController: NavController,
     newsViewModel: NewsViewModel = hiltViewModel()
 ) {
-    var initialApiCalled by rememberSaveable { mutableStateOf(false) }
     val modalBottomSheetState = rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
-    val headlineNews by newsViewModel.headlineNewsLiveData.observeAsState(emptyList())
+    val headlineNews by newsViewModel.headlineNewsLiveData.observeAsState(listOf())
     val error by newsViewModel.errorLiveData.observeAsState(false)
-
-    if (!initialApiCalled) {
-        LaunchedEffect(Unit) {
-//            newsViewModel.fetchHeadlineNews()
-            initialApiCalled = true
-        }
-    }
 
     ModalBottomSheetLayout(
         sheetContent = {

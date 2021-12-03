@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.GridCells
 import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
@@ -35,11 +34,9 @@ fun SavedScreen(
     name: String?,
     savedViewModel: SavedViewModel = hiltViewModel()
 ) {
-    val savedNews by savedViewModel.savedNewsLiveData.observeAsState(emptyList())
+    val savedNews by savedViewModel.savedNewsLiveData.observeAsState(listOf())
 
-    LaunchedEffect(Unit) {
-        savedViewModel.fetchSavedNews()
-    }
+    savedViewModel.fetchSavedNews()
 
     Column(
         modifier = Modifier

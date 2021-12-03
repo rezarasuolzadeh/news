@@ -58,7 +58,7 @@ fun ItemSavedNews(
             Image(
                 painter = paintImage(image = news.image),
                 contentDescription = "",
-                contentScale = ContentScale.Crop,
+                contentScale = ContentScale.FillBounds,
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(200.dp)

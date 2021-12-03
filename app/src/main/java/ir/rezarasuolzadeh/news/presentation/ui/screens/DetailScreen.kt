@@ -45,18 +45,10 @@ fun DetailScreen(
     news: NewsModel?,
     detailViewModel: DetailViewModel = hiltViewModel()
 ) {
-
-    var initialApiCalled by rememberSaveable { mutableStateOf(false) }
-    if (!initialApiCalled) {
-        LaunchedEffect(Unit) {
-            detailViewModel.fetchExistNews(news?.url.orEmpty())
-            initialApiCalled = true
-        }
-    }
-
+    val context = LocalContext.current
     val existNews by detailViewModel.existNewsLiveData.observeAsState(false)
 
-    val context = LocalContext.current
+    detailViewModel.fetchExistNews(news?.url.orEmpty())
 
     Column(
         modifier = Modifier

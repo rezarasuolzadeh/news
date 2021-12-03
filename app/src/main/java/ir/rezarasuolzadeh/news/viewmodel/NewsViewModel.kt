@@ -16,12 +16,16 @@ class NewsViewModel @Inject constructor(
     private val repository: NewsRepository,
 ) : BaseViewModel() {
 
+    init {
+        fetchHeadlineNews()
+    }
+
     private val headlineNews = MutableLiveData<List<NewsModel>>()
     val headlineNewsLiveData: LiveData<List<NewsModel>>
         get() = headlineNews
 
-    fun fetchHeadlineNews() = viewModelScope.launch(exceptionHandler) {
-        delay(5000)
+    private fun fetchHeadlineNews() = viewModelScope.launch(exceptionHandler) {
+        delay(3000)
         headlineNews.value = (repository.getHeadlineNews())
     }
 

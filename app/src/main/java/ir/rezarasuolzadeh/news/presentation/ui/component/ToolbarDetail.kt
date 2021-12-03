@@ -14,6 +14,7 @@ import androidx.compose.ui.graphics.Color.Companion.White
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.unit.dp
@@ -33,7 +34,6 @@ fun ToolbarDetail(
     navController: NavController,
     url: String
 ) {
-
     val context = LocalContext.current
 
     Column {
@@ -64,7 +64,7 @@ fun ToolbarDetail(
             )
 
             Text(
-                text = "Detail",
+                text = stringResource(id = R.string.detail),
                 style = TextStyle(
                     color = Grey,
                     fontFamily = FontFamily.SansSerif,
@@ -80,7 +80,7 @@ fun ToolbarDetail(
 
             Image(
                 painter = painterResource(R.drawable.ic_share),
-                contentDescription = "",
+                contentDescription = "share",
                 contentScale = ContentScale.FillBounds,
                 modifier = Modifier
                     .size(25.dp, 25.dp)

@@ -35,11 +35,11 @@ fun SavedScreen(
     name: String?,
     savedViewModel: SavedViewModel = hiltViewModel()
 ) {
+    val savedNews by savedViewModel.savedNewsLiveData.observeAsState(emptyList())
+
     LaunchedEffect(Unit) {
         savedViewModel.fetchSavedNews()
     }
-
-    val savedNews by savedViewModel.savedNewsLiveData.observeAsState(emptyList())
 
     Column(
         modifier = Modifier
@@ -72,5 +72,4 @@ fun SavedScreen(
                 }
             }
     }
-
 }

@@ -6,7 +6,7 @@ import ir.rezarasuolzadeh.news.model.SourceModel
 import ir.rezarasuolzadeh.news.utils.interfaces.Mapper
 import javax.inject.Inject
 
-class SavedNewsMapper @Inject constructor() : Mapper<NewsModel, NewsEntity> {
+class SavedMapper @Inject constructor() : Mapper<NewsModel, NewsEntity> {
 
     override fun mapResponseToModel(response: NewsModel): NewsEntity {
         return NewsEntity(

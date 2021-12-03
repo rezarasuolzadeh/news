@@ -19,16 +19,16 @@ class DetailViewModel @Inject constructor(
     val existNewsLiveData: LiveData<Boolean>
         get() = existNews
 
-    fun fetchExistNews(url: String) = viewModelScope.launch {
+    fun fetchExistNews(url: String) = viewModelScope.launch(exceptionHandler) {
         existNews.value = (repository.existNews(url))
     }
 
-    fun fetchDeleteNews(news: NewsModel) = viewModelScope.launch {
+    fun fetchDeleteNews(news: NewsModel) = viewModelScope.launch(exceptionHandler) {
         repository.deleteNews(news)
         fetchExistNews(news.url)
     }
 
-    fun fetchSaveNews(news: NewsModel) = viewModelScope.launch {
+    fun fetchSaveNews(news: NewsModel) = viewModelScope.launch(exceptionHandler) {
         repository.insertSavedNews(news)
         fetchExistNews(news.url)
     }

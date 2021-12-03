@@ -19,7 +19,7 @@ class SavedViewModel @Inject constructor(
     val savedNewsLiveData: LiveData<List<NewsModel>>
         get() = savedNews
 
-    fun fetchSavedNews() = viewModelScope.launch {
+    fun fetchSavedNews() = viewModelScope.launch(exceptionHandler) {
         savedNews.postValue(repository.getSavedNews())
     }
 

@@ -32,6 +32,7 @@ fun Pager(
         infiniteLoop = false,
         initialPage = 0,
     )
+
     Column {
         HorizontalPager(
             state = pagerState,

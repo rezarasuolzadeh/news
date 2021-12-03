@@ -33,9 +33,9 @@ fun HomeScreen(
     newsViewModel: NewsViewModel = hiltViewModel()
 ) {
     var initialApiCalled by rememberSaveable { mutableStateOf(false) }
-
-
     val modalBottomSheetState = rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
+    val headlineNews by newsViewModel.headlineNewsLiveData.observeAsState(emptyList())
+    val error by newsViewModel.errorLiveData.observeAsState(false)
 
     if (!initialApiCalled) {
         LaunchedEffect(Unit) {
@@ -43,9 +43,6 @@ fun HomeScreen(
             initialApiCalled = true
         }
     }
-
-    val headlineNews by newsViewModel.headlineNewsLiveData.observeAsState(emptyList())
-    val error by newsViewModel.errorLiveData.observeAsState(false)
 
     ModalBottomSheetLayout(
         sheetContent = {
@@ -68,7 +65,7 @@ fun HomeScreen(
                     ViewError()
                 } else {
                     if (headlineNews.isEmpty()) {
-                        HomeScreenShimmer()
+                        ShimmerHomeScreen()
                     } else {
                         LazyColumn(
                             modifier = Modifier

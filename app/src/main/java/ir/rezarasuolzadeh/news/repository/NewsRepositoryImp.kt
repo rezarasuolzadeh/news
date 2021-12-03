@@ -5,7 +5,7 @@ import ir.rezarasuolzadeh.news.api.NewsAPI
 import ir.rezarasuolzadeh.news.database.dao.SavedNewsDao
 import ir.rezarasuolzadeh.news.model.NewsModel
 import ir.rezarasuolzadeh.news.mapper.NewsMapper
-import ir.rezarasuolzadeh.news.mapper.SavedNewsMapper
+import ir.rezarasuolzadeh.news.mapper.SavedMapper
 import ir.rezarasuolzadeh.news.utils.interfaces.NewsRepository
 import javax.inject.Inject
 
@@ -14,7 +14,7 @@ class NewsRepositoryImp @Inject constructor(
     private val newsAPI: NewsAPI,
     private val savedNewsDao: SavedNewsDao,
     private val mapper: NewsMapper,
-    private val savedNewsMapper: SavedNewsMapper
+    private val savedNewsMapper: SavedMapper
 ) : NewsRepository {
 
     override suspend fun getHeadlineNews(): List<NewsModel> {

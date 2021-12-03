@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import ir.rezarasuolzadeh.news.presentation.ui.theme.ShimmerColorShades
 
 @Composable
-fun HomeScreenShimmer() {
+fun ShimmerHomeScreen() {
     HomeScreenShimmerAnimation()
 }
 

@@ -16,15 +16,15 @@ import ir.rezarasuolzadeh.news.R
 import ir.rezarasuolzadeh.news.presentation.ui.nav.Navigation
 import ir.rezarasuolzadeh.news.presentation.ui.theme.FruitsTheme
 
+@ExperimentalMaterialApi
+@ExperimentalCoilApi
+@ExperimentalFoundationApi
+@ExperimentalAnimationApi
+@ExperimentalComposeUiApi
+@ExperimentalPagerApi
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    @ExperimentalMaterialApi
-    @ExperimentalCoilApi
-    @ExperimentalFoundationApi
-    @ExperimentalAnimationApi
-    @ExperimentalComposeUiApi
-    @ExperimentalPagerApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setTheme(R.style.Theme_Fruits)

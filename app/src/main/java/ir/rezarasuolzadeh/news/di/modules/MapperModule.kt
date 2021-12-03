@@ -6,7 +6,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import ir.rezarasuolzadeh.news.database.model.NewsEntity
 import ir.rezarasuolzadeh.news.mapper.NewsMapper
-import ir.rezarasuolzadeh.news.mapper.SavedNewsMapper
+import ir.rezarasuolzadeh.news.mapper.SavedMapper
 import ir.rezarasuolzadeh.news.mapper.SourceMapper
 import ir.rezarasuolzadeh.news.utils.interfaces.Mapper
 import ir.rezarasuolzadeh.news.model.NewsModel
@@ -34,7 +34,7 @@ abstract class MapperModule {
     @Binds
     @Singleton
     abstract fun bindSavedNewsMapper(
-        mapper: SavedNewsMapper
+        mapper: SavedMapper
     ): Mapper<NewsModel, NewsEntity>
 
 }

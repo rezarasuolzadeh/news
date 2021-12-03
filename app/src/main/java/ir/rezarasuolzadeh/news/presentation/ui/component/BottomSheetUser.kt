@@ -77,46 +77,25 @@ fun BottomSheetUser() {
                     .padding(top = 8.dp, bottom = 10.dp)
             )
 
-            Row {
-                Image(
-                    painter = painterResource(R.drawable.ic_github),
-                    contentDescription = "github",
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier
-                        .padding(end = 5.dp, top = 10.dp, bottom = 30.dp)
-                        .size(25.dp)
-                        .clickable(
-                            indication = null,
-                            interactionSource = remember { MutableInteractionSource() },
-                            onClick = {
+            Image(
+                painter = painterResource(R.drawable.ic_github),
+                contentDescription = "github",
+                contentScale = ContentScale.Crop,
+                modifier = Modifier
+                    .padding(top = 10.dp, bottom = 30.dp)
+                    .size(25.dp)
+                    .clickable(
+                        indication = null,
+                        interactionSource = remember { MutableInteractionSource() },
+                        onClick = {
 
-                                openUrlIntent(
-                                    context = context,
-                                    url = context.resources.getString(R.string.github_url)
-                                )
-                            }
-                        )
-                )
-
-                Image(
-                    painter = painterResource(R.drawable.ic_linkedin),
-                    contentDescription = "github",
-                    contentScale = ContentScale.Crop,
-                    modifier = Modifier
-                        .padding(start = 5.dp, top = 10.dp, bottom = 30.dp)
-                        .size(30.dp)
-                        .clickable(
-                            indication = null,
-                            interactionSource = remember { MutableInteractionSource() },
-                            onClick = {
-                                openUrlIntent(
-                                    context = context,
-                                    url = context.resources.getString(R.string.linkedin_url)
-                                )
-                            }
-                        )
-                )
-            }
+                            openUrlIntent(
+                                context = context,
+                                url = context.resources.getString(R.string.github_url)
+                            )
+                        }
+                    )
+            )
         }
     )
 }

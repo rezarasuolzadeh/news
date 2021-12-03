@@ -1,3 +1,10 @@
 <resources>
+    <!-- app -->
     <string name="app_name">News</string>
+    <!-- url -->
+    <string name="github_url">https://github.com/rezarasuolzadeh</string>
+    <string name="linkedin_url">https://www.linkedin.com/in/rezarasuolzadeh/</string>
+    <!-- user -->
+    <string name="user_name">Reza Rasuolzadeh</string>
+    <string name="user_role">Android developer</string>
 </resources>

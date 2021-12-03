@@ -3,6 +3,7 @@ package ir.rezarasuolzadeh.news.presentation.ui.nav
 import androidx.compose.animation.*
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.navigation.NavType
@@ -20,6 +21,7 @@ import ir.rezarasuolzadeh.news.presentation.ui.screens.Screen
 import ir.rezarasuolzadeh.news.utils.constants.Constants
 import ir.rezarasuolzadeh.news.utils.extentions.getParcelableBundle
 
+@ExperimentalMaterialApi
 @ExperimentalFoundationApi
 @ExperimentalAnimationApi
 @ExperimentalCoilApi

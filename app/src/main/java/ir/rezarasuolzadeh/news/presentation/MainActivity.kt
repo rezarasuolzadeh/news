@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -18,6 +19,7 @@ import ir.rezarasuolzadeh.news.presentation.ui.theme.FruitsTheme
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
+    @ExperimentalMaterialApi
     @ExperimentalCoilApi
     @ExperimentalFoundationApi
     @ExperimentalAnimationApi

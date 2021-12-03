@@ -5,8 +5,11 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.ExperimentalMaterialApi
+import androidx.compose.material.ModalBottomSheetState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color.Companion.White
@@ -19,13 +22,18 @@ import coil.annotation.ExperimentalCoilApi
 import ir.rezarasuolzadeh.news.R
 import ir.rezarasuolzadeh.news.presentation.ui.screens.Screen
 import ir.rezarasuolzadeh.news.presentation.ui.theme.MediumGrey
+import kotlinx.coroutines.launch
 
+@ExperimentalMaterialApi
 @ExperimentalCoilApi
 @ExperimentalComposeUiApi
 @Composable
 fun ToolbarHome(
-    navController: NavController
+    navController: NavController,
+    state: ModalBottomSheetState
 ) {
+    val scope = rememberCoroutineScope()
+
     Column {
         ConstraintLayout(
             modifier = Modifier
@@ -46,7 +54,15 @@ fun ToolbarHome(
                         bottom.linkTo(parent.bottom)
                         start.linkTo(parent.start, margin = 30.dp)
                     }
-
+                    .clickable(
+                        indication = null,
+                        interactionSource = remember { MutableInteractionSource() },
+                        onClick = {
+                            scope.launch {
+                                state.show()
+                            }
+                        }
+                    )
             )
 
             Image(

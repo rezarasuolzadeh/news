@@ -38,13 +38,13 @@ fun Navigation() {
         // home screen
         composable(
             route = Screen.HomeScreen.route,
-            exitTransition = { _, target ->
+            exitTransition = { _, _ ->
                 slideOutHorizontally(
                     targetOffsetX = { -300 },
                     animationSpec = tween(300)
                 ) + fadeOut(animationSpec = tween(300))
             },
-            popEnterTransition = { initial, _ ->
+            popEnterTransition = { _, _ ->
                 slideInHorizontally(
                     initialOffsetX = { -300 },
                     animationSpec = tween(300)
@@ -66,25 +66,25 @@ fun Navigation() {
                     nullable = true
                 }
             ),
-            enterTransition = { initial, _ ->
+            enterTransition = { _, _ ->
                 slideInHorizontally(
                     initialOffsetX = { 300 },
                     animationSpec = tween(300)
                 ) + fadeIn(animationSpec = tween(300))
             },
-            exitTransition = { _, target ->
+            exitTransition = { _, _ ->
                 slideOutHorizontally(
                     targetOffsetX = { -300 },
                     animationSpec = tween(300)
                 ) + fadeOut(animationSpec = tween(300))
             },
-            popExitTransition = { _, target ->
+            popExitTransition = { _, _ ->
                 slideOutHorizontally(
                     targetOffsetX = { 300 },
                     animationSpec = tween(300)
                 ) + fadeOut(animationSpec = tween(300))
             },
-            popEnterTransition = { initial, _ ->
+            popEnterTransition = { _, _ ->
                 slideInHorizontally(
                     initialOffsetX = { -300 },
                     animationSpec = tween(300)
@@ -107,13 +107,13 @@ fun Navigation() {
                     nullable = true
                 }
             ),
-            enterTransition = { initial, _ ->
+            enterTransition = { _, _ ->
                 slideInHorizontally(
                     initialOffsetX = { 300 },
                     animationSpec = tween(300)
                 ) + fadeIn(animationSpec = tween(300))
             },
-            popExitTransition = { _, target ->
+            popExitTransition = { _, _ ->
                 slideOutHorizontally(
                     targetOffsetX = { 300 },
                     animationSpec = tween(300)

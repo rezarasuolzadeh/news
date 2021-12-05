@@ -7,6 +7,8 @@
     <!-- toolbar -->
     <string name="detail">Detail</string>
     <string name="saved">Saved</string>
+    <!-- title -->
+    <string name="headline_news">Headline news</string>
     <!-- user -->
     <string name="user_name">Reza Rasuolzadeh</string>
     <string name="user_role">Android developer</string>

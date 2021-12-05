@@ -14,11 +14,13 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import coil.annotation.ExperimentalCoilApi
 import com.google.accompanist.pager.ExperimentalPagerApi
+import ir.rezarasuolzadeh.news.R
 import ir.rezarasuolzadeh.news.presentation.ui.component.*
 import ir.rezarasuolzadeh.news.presentation.ui.theme.LightGrey
 import ir.rezarasuolzadeh.news.viewmodel.NewsViewModel
@@ -78,7 +80,7 @@ fun HomeScreen(
 
                             if (headlineNews.isNotEmpty()) {
                                 item {
-                                    ItemHeaderTitle("Technology News")
+                                    ItemHeaderTitle(stringResource(id = R.string.headline_news))
                                 }
                                 for (i in headlineNews.indices) {
                                     item {

@@ -1,5 +1,5 @@
 ## News
-This is a small and simple android app that it's UI made by Jetpack Compose. I use the Google News API in this app, this app can make only 100 request every day (because of google limit 🙃). The program works with an API for headline news, which is fetch every time the app is launched.
+This is a small and simple android app that it's UI made by Jetpack Compose. I use the [GNews API](https://gnews.io/) in this app, it can make only 100 request every day (because of GNews limit 🙃). The program works with an API for headline news, which is fetch every time the app is launched.
 
 ### demo
 <img src="/demo/demo.gif" width="200" height="400" />

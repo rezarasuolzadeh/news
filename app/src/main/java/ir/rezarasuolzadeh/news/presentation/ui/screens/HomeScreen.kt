@@ -34,7 +34,8 @@ fun HomeScreen(
     navController: NavController,
     newsViewModel: NewsViewModel = hiltViewModel()
 ) {
-    val modalBottomSheetState = rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
+    val modalBottomSheetState =
+        rememberModalBottomSheetState(initialValue = ModalBottomSheetValue.Hidden)
     val headlineNews by newsViewModel.headlineNewsLiveData.observeAsState(listOf())
     val error by newsViewModel.errorLiveData.observeAsState(false)
 
@@ -56,7 +57,7 @@ fun HomeScreen(
                 ToolbarHome(navController, modalBottomSheetState)
 
                 if (error) {
-                    ViewError()
+                    ViewError(tryAgainClick = { newsViewModel.tryAgain() })
                 } else {
                     if (headlineNews.isEmpty()) {
                         ShimmerHomeScreen()

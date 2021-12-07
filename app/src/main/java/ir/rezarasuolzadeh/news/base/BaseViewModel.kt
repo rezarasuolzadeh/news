@@ -9,7 +9,7 @@ import kotlinx.coroutines.CoroutineExceptionHandler
 
 abstract class BaseViewModel : ViewModel() {
 
-    private val error = MutableLiveData(false)
+    protected val error = MutableLiveData(false)
     val errorLiveData: LiveData<Boolean>
         get() = error
 

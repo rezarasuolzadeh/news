@@ -29,4 +29,9 @@ class NewsViewModel @Inject constructor(
         headlineNews.value = (repository.getHeadlineNews())
     }
 
+    fun tryAgain() {
+        error.value = false
+        fetchHeadlineNews()
+    }
+
 }

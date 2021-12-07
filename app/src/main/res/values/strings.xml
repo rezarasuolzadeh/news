@@ -2,7 +2,7 @@
     <!-- app -->
     <string name="app_name">News</string>
     <!-- url -->
-    <string name="github_url">https://github.com/rezarasuolzadeh</string>
+    <string name="github_url">https://github.com/rezarasuolzadeh/news</string>
     <string name="linkedin_url">https://www.linkedin.com/in/rezarasuolzadeh/</string>
     <!-- toolbar -->
     <string name="detail">Detail</string>

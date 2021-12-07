@@ -1,5 +1,5 @@
 ## News
-This is a small and simple program that is made by writing. I use the Google News API in this app, this app can make only 100 request every day (because of google limit 🙃). The program works with an API for headline news, which is fetch every time the app is launched.
+This is a small and simple android app that it's UI made by Jetpack Compose. I use the Google News API in this app, this app can make only 100 request every day (because of google limit 🙃). The program works with an API for headline news, which is fetch every time the app is launched.
 
 ### demo
 <img src="/demo/demo.gif" width="200" height="400" />
